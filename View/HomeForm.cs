@@ -11,15 +11,18 @@ using System.Windows.Forms;
 
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
-
+using System.IO;
+using BusinessObjects;
+using Newtonsoft.Json;
 
 namespace View
 {
-    public partial class Form1 : Form
+    public partial class HomeForm : Form
     {
-        public Form1()
+        public HomeForm()
         {
             InitializeComponent();
+
 
         }
 
@@ -29,14 +32,19 @@ namespace View
             homeButton.ForeColor = Color.Blue;
             homeButton.BackColor = Color.LightGray;
 
+            
         }
 
         private void eventButton_Click(object sender, EventArgs e)
         {
+            List<Event> events = new List<Event>();
+
             #region VISUAL
             ReinitializeButtonsColor();
-            eventButton.ForeColor = Color.FromArgb(176,159,3);
+            eventButton.ForeColor = Color.FromArgb(176, 159, 3);
             eventButton.BackColor = Color.LightGray;
+
+            Events_dataGridView.Visible = true;
             #endregion
 
             #region URIConstruction
@@ -61,19 +69,28 @@ namespace View
                     string message = String.Format("GET falhou. Recebido HTTP {0}", response.StatusCode);
                     throw new ApplicationException(message);
                 }
-                Console.WriteLine("Got it");
 
-                //Console.WriteLine(GetPageAsString(uri.ToString()));
+                MessageBox.Show("All right!");
 
-                //DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(ResponseOne));
-                //object objResponse = jsonSerializer.ReadObject(response.GetResponseStream());
-                //ResponseOne jsonResponse = (ResponseOne)objResponse;// ou "as Response";
+    
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                string content = reader.ReadToEnd();
 
+               // MessageBox.Show(content)
+
+                DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Event));
+
+                //Event myDeserializedClass = (Event)jsonSerializer.ReadObject(response.GetResponseStream());
+                //Event myDeserializedClass = (Event)jsonSerializer.ReadObject(response.GetResponseStream());
+                //Event myDeserializedClass = (Event)jsonSerializer.ReadObject(response.GetResponseStream());
+               // Event eventTest = JsonConvert.DeserializeObject<Event>(content);
+                events = JsonConvert.DeserializeObject<List<Event>>(content);
+                Events_dataGridView.DataSource = events;
             }
 
-                #endregion
+            #endregion
 
-            }
+        }
         private void aboutButton_Click(object sender, EventArgs e)
         {
             ReinitializeButtonsColor();

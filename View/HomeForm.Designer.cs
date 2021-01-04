@@ -1,7 +1,7 @@
 ﻿
 namespace View
 {
-    partial class Form1
+    partial class HomeForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,11 +31,14 @@ namespace View
         {
             this.homeButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.aboutButton = new System.Windows.Forms.Button();
             this.accountButton = new System.Windows.Forms.Button();
             this.eventButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.aboutButton = new System.Windows.Forms.Button();
+            this.Events_dataGridView = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Events_dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // homeButton
@@ -67,6 +70,22 @@ namespace View
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // aboutButton
+            // 
+            this.aboutButton.BackColor = System.Drawing.SystemColors.ControlText;
+            this.aboutButton.FlatAppearance.BorderColor = System.Drawing.Color.Fuchsia;
+            this.aboutButton.FlatAppearance.BorderSize = 0;
+            this.aboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.aboutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aboutButton.ForeColor = System.Drawing.SystemColors.Info;
+            this.aboutButton.Location = new System.Drawing.Point(504, 11);
+            this.aboutButton.Name = "aboutButton";
+            this.aboutButton.Size = new System.Drawing.Size(252, 108);
+            this.aboutButton.TabIndex = 3;
+            this.aboutButton.Text = "About";
+            this.aboutButton.UseVisualStyleBackColor = false;
+            this.aboutButton.Click += new System.EventHandler(this.aboutButton_Click);
             // 
             // accountButton
             // 
@@ -103,28 +122,25 @@ namespace View
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel1.Controls.Add(this.Events_dataGridView);
             this.panel1.Location = new System.Drawing.Point(-1, 107);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1008, 447);
             this.panel1.TabIndex = 3;
             // 
-            // aboutButton
+            // Events_dataGridView
             // 
-            this.aboutButton.BackColor = System.Drawing.SystemColors.ControlText;
-            this.aboutButton.FlatAppearance.BorderColor = System.Drawing.Color.Fuchsia;
-            this.aboutButton.FlatAppearance.BorderSize = 0;
-            this.aboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.aboutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.aboutButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.aboutButton.Location = new System.Drawing.Point(504, 11);
-            this.aboutButton.Name = "aboutButton";
-            this.aboutButton.Size = new System.Drawing.Size(252, 108);
-            this.aboutButton.TabIndex = 3;
-            this.aboutButton.Text = "About";
-            this.aboutButton.UseVisualStyleBackColor = false;
-            this.aboutButton.Click += new System.EventHandler(this.aboutButton_Click);
+            this.Events_dataGridView.BackgroundColor = System.Drawing.SystemColors.MenuHighlight;
+            this.Events_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Events_dataGridView.Location = new System.Drawing.Point(0, 0);
+            this.Events_dataGridView.Name = "Events_dataGridView";
+            this.Events_dataGridView.RowHeadersWidth = 51;
+            this.Events_dataGridView.RowTemplate.Height = 24;
+            this.Events_dataGridView.Size = new System.Drawing.Size(1008, 447);
+            this.Events_dataGridView.TabIndex = 0;
+            this.Events_dataGridView.Visible = false;
             // 
-            // Form1
+            // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -132,9 +148,11 @@ namespace View
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Name = "Form1";
+            this.Name = "HomeForm";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Events_dataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -147,6 +165,7 @@ namespace View
         private System.Windows.Forms.Button eventButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button aboutButton;
+        private System.Windows.Forms.DataGridView Events_dataGridView;
     }
 }
 
