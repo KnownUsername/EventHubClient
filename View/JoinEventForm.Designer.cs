@@ -29,221 +29,78 @@ namespace View
         /// </summary>
         private void InitializeComponent()
         {
-            this.name_textBox = new System.Windows.Forms.TextBox();
-            this.name = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.description_textBox = new System.Windows.Forms.TextBox();
-            this.initialDate_Picker = new System.Windows.Forms.DateTimePicker();
-            this.endDate_Picker = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.slots_textBox = new System.Windows.Forms.TextBox();
-            this.local_textBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.confirm_button = new System.Windows.Forms.Button();
-            this.sport_textBox = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.teamMax_textBox = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.entryFee_textBox = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.name_textBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.addMember_textBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.addMember_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // name_textBox
-            // 
-            this.name_textBox.Location = new System.Drawing.Point(131, 100);
-            this.name_textBox.Name = "name_textBox";
-            this.name_textBox.Size = new System.Drawing.Size(100, 22);
-            this.name_textBox.TabIndex = 0;
-            // 
-            // name
-            // 
-            this.name.AutoSize = true;
-            this.name.Location = new System.Drawing.Point(69, 100);
-            this.name.Name = "name";
-            this.name.Size = new System.Drawing.Size(45, 17);
-            this.name.TabIndex = 1;
-            this.name.Text = "Name";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(69, 275);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 17);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Initial";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(46, 154);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 17);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Description";
-            // 
-            // description_textBox
-            // 
-            this.description_textBox.Location = new System.Drawing.Point(131, 151);
-            this.description_textBox.Multiline = true;
-            this.description_textBox.Name = "description_textBox";
-            this.description_textBox.Size = new System.Drawing.Size(264, 83);
-            this.description_textBox.TabIndex = 4;
-            // 
-            // initialDate_Picker
-            // 
-            this.initialDate_Picker.Location = new System.Drawing.Point(131, 275);
-            this.initialDate_Picker.Name = "initialDate_Picker";
-            this.initialDate_Picker.Size = new System.Drawing.Size(200, 22);
-            this.initialDate_Picker.TabIndex = 6;
-            // 
-            // endDate_Picker
-            // 
-            this.endDate_Picker.Location = new System.Drawing.Point(131, 326);
-            this.endDate_Picker.Name = "endDate_Picker";
-            this.endDate_Picker.Size = new System.Drawing.Size(200, 22);
-            this.endDate_Picker.TabIndex = 7;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(69, 326);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(33, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "End";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(619, 109);
+            this.label1.Location = new System.Drawing.Point(66, 170);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 17);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Slots";
+            this.label1.Size = new System.Drawing.Size(45, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Name";
             // 
-            // slots_textBox
+            // name_textBox
             // 
-            this.slots_textBox.Location = new System.Drawing.Point(677, 109);
-            this.slots_textBox.Name = "slots_textBox";
-            this.slots_textBox.Size = new System.Drawing.Size(100, 22);
-            this.slots_textBox.TabIndex = 10;
+            this.name_textBox.Location = new System.Drawing.Point(134, 170);
+            this.name_textBox.Name = "name_textBox";
+            this.name_textBox.Size = new System.Drawing.Size(100, 22);
+            this.name_textBox.TabIndex = 1;
             // 
-            // local_textBox
+            // label2
             // 
-            this.local_textBox.Location = new System.Drawing.Point(677, 148);
-            this.local_textBox.Name = "local_textBox";
-            this.local_textBox.Size = new System.Drawing.Size(100, 22);
-            this.local_textBox.TabIndex = 12;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 42F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(332, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(628, 154);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Join Event";
             // 
-            // label5
+            // addMember_textBox
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(619, 148);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 17);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Local";
+            this.addMember_textBox.Location = new System.Drawing.Point(649, 170);
+            this.addMember_textBox.Name = "addMember_textBox";
+            this.addMember_textBox.Size = new System.Drawing.Size(311, 22);
+            this.addMember_textBox.TabIndex = 2;
             // 
-            // confirm_button
+            // label3
             // 
-            this.confirm_button.Location = new System.Drawing.Point(790, 317);
-            this.confirm_button.Name = "confirm_button";
-            this.confirm_button.Size = new System.Drawing.Size(159, 90);
-            this.confirm_button.TabIndex = 13;
-            this.confirm_button.Text = "Confirm";
-            this.confirm_button.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(535, 173);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(88, 17);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Add member";
             // 
-            // sport_textBox
+            // addMember_button
             // 
-            this.sport_textBox.Location = new System.Drawing.Point(677, 188);
-            this.sport_textBox.Name = "sport_textBox";
-            this.sport_textBox.Size = new System.Drawing.Size(100, 22);
-            this.sport_textBox.TabIndex = 15;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(619, 188);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 17);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Sport";
-            // 
-            // teamMax_textBox
-            // 
-            this.teamMax_textBox.Location = new System.Drawing.Point(677, 232);
-            this.teamMax_textBox.Name = "teamMax_textBox";
-            this.teamMax_textBox.Size = new System.Drawing.Size(100, 22);
-            this.teamMax_textBox.TabIndex = 17;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(541, 235);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(130, 17);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Max team members";
-            // 
-            // entryFee_textBox
-            // 
-            this.entryFee_textBox.Location = new System.Drawing.Point(677, 270);
-            this.entryFee_textBox.Name = "entryFee_textBox";
-            this.entryFee_textBox.Size = new System.Drawing.Size(100, 22);
-            this.entryFee_textBox.TabIndex = 19;
-            this.entryFee_textBox.Visible = false;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(592, 275);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(69, 17);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Entry Fee";
-            this.label8.Visible = false;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(865, 141);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 20;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.addMember_button.Location = new System.Drawing.Point(885, 230);
+            this.addMember_button.Name = "addMember_button";
+            this.addMember_button.Size = new System.Drawing.Size(75, 23);
+            this.addMember_button.TabIndex = 4;
+            this.addMember_button.Text = "Add";
+            this.addMember_button.UseVisualStyleBackColor = true;
+            this.addMember_button.Click += new System.EventHandler(this.addMember_button_Click);
             // 
             // JoinEventForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Tomato;
+            this.BackColor = System.Drawing.Color.Maroon;
             this.ClientSize = new System.Drawing.Size(1008, 444);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.entryFee_textBox);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.teamMax_textBox);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.sport_textBox);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.confirm_button);
-            this.Controls.Add(this.local_textBox);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.slots_textBox);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.endDate_Picker);
-            this.Controls.Add(this.initialDate_Picker);
+            this.Controls.Add(this.addMember_button);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.description_textBox);
+            this.Controls.Add(this.addMember_textBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.name);
             this.Controls.Add(this.name_textBox);
+            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(0, 492);
             this.Name = "JoinEventForm";
             this.Text = "JoinEventForm";
             this.ResumeLayout(false);
@@ -253,25 +110,11 @@ namespace View
 
         #endregion
 
-        private System.Windows.Forms.TextBox name_textBox;
-        private System.Windows.Forms.Label name;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox description_textBox;
-        private System.Windows.Forms.DateTimePicker initialDate_Picker;
-        private System.Windows.Forms.DateTimePicker endDate_Picker;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox slots_textBox;
-        private System.Windows.Forms.TextBox local_textBox;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button confirm_button;
-        private System.Windows.Forms.TextBox sport_textBox;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox teamMax_textBox;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox entryFee_textBox;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox name_textBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox addMember_textBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button addMember_button;
     }
 }

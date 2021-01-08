@@ -7,24 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessObjects;
 
 namespace View
 {
-    public partial class JoinEventForm : Form
+    public partial class CreateEventForm : Form
     {
-        public JoinEventForm()
+        public CreateEventForm()
         {
             InitializeComponent();
         }
 
-        private void addMember_button_Click(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (addMember_textBox.Text != null)
-            {
-                // Send email to service, to check if it's a registered email
-            }
-
-
+            eventStatus_Picker.DataSource = Enum.GetValues(typeof(EventStatus));
         }
+    
+    
     }
 }

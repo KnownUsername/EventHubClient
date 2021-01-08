@@ -19,7 +19,7 @@ namespace View
 {
     public partial class HomeForm : Form
     {
-        JoinEventForm joinEventForm = new JoinEventForm();
+        CreateEventForm joinEventForm = new CreateEventForm();
         
 
         public HomeForm()
