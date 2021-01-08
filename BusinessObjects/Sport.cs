@@ -10,7 +10,7 @@ namespace BusinessObjects
         string name;
 
         #region PROPERTIES
-        string Name { get => name; set => name = value; }
+        public string Name { get => name; set => name = value; }
         #endregion
         public Sport()
         {
