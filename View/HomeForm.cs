@@ -4,186 +4,78 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using System.IO;
-using BusinessObjects;
-using Newtonsoft.Json;
+using Entities.EntitiesService;
 
 namespace View
 {
     public partial class HomeForm : Form
-    {
-        CreateEventForm joinEventForm = new CreateEventForm();
+    {          
         
-
+        User currentUser = new User();
+        string token;
+        
         public HomeForm()
         {
             InitializeComponent();
-
-
-        }
-
-        private void home_Click(object sender, EventArgs e)
-        {
-            ReinitializeButtonsColor();
-            homeButton.ForeColor = Color.Blue;
-            homeButton.BackColor = Color.LightGray;
-            if (Events_dataGridView.Visible) Events_dataGridView.Visible = false;
-            
-        }
-
-
-        #region EVENTS
-
-        #region BUTTONS
-        private void eventButton_Click(object sender, EventArgs e)
-        {
-
-            #region VISUAL
-            ReinitializeButtonsColor();
-            eventButton.ForeColor = Color.FromArgb(176, 159, 3);
-            eventButton.BackColor = Color.LightGray;
-
-            Events_dataGridView.Visible = true;
-            #endregion
-
-            friendliesButton.Visible = true;
-            competitivesButton.Visible = true;
-        }
-
-        private void friendlies_Click(object sender, EventArgs e)
-        {
-            competitivesButton.Visible = false;
-            List<Event> events = new List<Event>();
-            events = GetFriendlyEvents(); // reception of events
-            EventDataGridViewFiller(events); // DataGrid fill with friendly events
-
-            Events_dataGridView.CellClick += Events_dataGridView_CellClick;
-        }
-
-        private void competitivesButton_Click(object sender, EventArgs e)
-        {
+  
 
         }
 
-        #endregion
-
-        #region METHODS
-        private List<Event> GetFriendlyEvents()
+        private void login_button_Click(object sender, EventArgs e)
         {
+            currentUser.Email = emailLog_textBox.Text.ToString();
+            currentUser.Password = emailReg_textBox.Text.ToString();
 
-            List<Event> events = new List<Event>();
+            // Send info to service
 
-            #region URIConstruction
-            HttpWebRequest request;
-            StringBuilder uri;
-            string url = "https://localhost:44318/events/getFriendlyEvents";
+        }
 
-            uri = new StringBuilder();
-            uri.Append(url);
-            #endregion
+        private void join_button_Click(object sender, EventArgs e)
+        {
+            currentUser.Name = name_textBox.Text.ToString();
+            currentUser.Email = emailReg_textBox.Text.ToString();
+            currentUser.Password = passwordReg_textBox.Text.ToString();
 
-            // RequestPreparation
-            request = WebRequest.Create(uri.ToString()) as HttpWebRequest;
+            // Send info to service 
 
-            #region RequestSend
-            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)     //via GET
+        }
+
+        private bool TryLogin(User user)
+        {
+            string url = "https://localhost:44318/api/user/login";
+
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(url);
+
+            //Definir tipo de resultado: JSON
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            // Associar o token ao header do objeto do tipo HttpClient
+            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);         
+
+            // Converte objeto para formato Json
+            string jsonString = JsonSerializer.Serialize(user);
+            var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");   //Header
+
+            // Espera o resultado
+            HttpResponseMessage response = client. Post(url, stringContent);  //Post
+
+            string result = response.Content.ReadAsStringAsync().Result;
+
+            // Verifica se o retorno é 200
+            if (response.IsSuccessStatusCode)
             {
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    string message = String.Format("GET falhou. Recebido HTTP {0}", response.StatusCode);
-                    throw new ApplicationException(message);
-                }
-
-
-                // Storage of requested Json
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                string content = reader.ReadToEnd();
-
-                // Deserialization of received Json
-                events = JsonConvert.DeserializeObject<List<Event>>(content);
-                return events;
-            }
-        }
-
-        private void Events_dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if(e.ColumnIndex == Events_dataGridView.Columns["enter_event"].Index) // Check if was clicked a button on table
-            {
-
-                Point startPoint = new Point(0, 16);
-                joinEventForm.Location = startPoint;
-                joinEventForm.Show();
-            }
-        }
-
-
-        private void EventDataGridViewFiller(List<Event> events)
-        {
-
-            Events_dataGridView.DataSource = events; // Fill DataGrid with events
-
-            // Add button to join an event
-            DataGridViewButtonColumn joinEventButtonColumn = new DataGridViewButtonColumn();
-            joinEventButtonColumn.Name = "enter_event";
-            joinEventButtonColumn.Text = "Join";
-
-            Events_dataGridView.RowHeadersVisible = false; // Remove of default blank column
-
-            if (Events_dataGridView.Columns["enter_event"] == null) // Check if column already exists
-            {
-                Events_dataGridView.Columns.Insert(0, joinEventButtonColumn); // Introduction of join button to table
+                MessageBox.Show("Done!");
             }
 
+            return true;
         }
-        #endregion
-
-        #endregion
-
-
-        #endregion
-        private void teamsButton_Click(object sender, EventArgs e)
-        {
-            ReinitializeButtonsColor();
-            teamsButton.ForeColor = Color.Green;
-            teamsButton.BackColor = Color.LightGray;
-            if (Events_dataGridView.Visible) Events_dataGridView.Visible = false;
-
-
-        }
-    
-        private void accountButton_Click(object sender, EventArgs e)
-        {
-            ReinitializeButtonsColor();
-            accountButton.ForeColor = Color.IndianRed;
-            accountButton.BackColor = Color.LightGray;
-            if (Events_dataGridView.Visible) Events_dataGridView.Visible = false;
-
-        }
-
-
-
-        public void ReinitializeButtonsColor()
-        {
-            
-           foreach (Button button in groupBox1.Controls.OfType<Button>())
-            {
-                button.ForeColor = Color.White;
-                button.BackColor = Color.Black;
-            }
-        }
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-            
-        }
-
 
     }
 }

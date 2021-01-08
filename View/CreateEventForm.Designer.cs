@@ -215,7 +215,7 @@ namespace View
             this.eventStatus_Picker.Name = "eventStatus_Picker";
             this.eventStatus_Picker.Size = new System.Drawing.Size(121, 24);
             this.eventStatus_Picker.TabIndex = 20;
-            this.eventStatus_Picker.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.eventStatus_Picker.SelectedIndexChanged += new System.EventHandler(this.eventStatusPicker_SelectedIndexChanged);
             // 
             // label9
             // 

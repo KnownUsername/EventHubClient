@@ -29,186 +29,190 @@ namespace View
         /// </summary>
         private void InitializeComponent()
         {
-            this.homeButton = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.teamsButton = new System.Windows.Forms.Button();
-            this.accountButton = new System.Windows.Forms.Button();
-            this.eventButton = new System.Windows.Forms.Button();
-            this.underPanel = new System.Windows.Forms.Panel();
-            this.competitivesButton = new System.Windows.Forms.Button();
-            this.friendliesButton = new System.Windows.Forms.Button();
-            this.Events_dataGridView = new System.Windows.Forms.DataGridView();
-            this.groupBox1.SuspendLayout();
-            this.underPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Events_dataGridView)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.email_label = new System.Windows.Forms.Label();
+            this.emailLog_textBox = new System.Windows.Forms.TextBox();
+            this.passwordLog_textBox = new System.Windows.Forms.TextBox();
+            this.password_label = new System.Windows.Forms.Label();
+            this.passwordReg_textBox = new System.Windows.Forms.TextBox();
+            this.passwordReg_label = new System.Windows.Forms.Label();
+            this.emailReg_textBox = new System.Windows.Forms.TextBox();
+            this.emailReg_label = new System.Windows.Forms.Label();
+            this.name_textBox = new System.Windows.Forms.TextBox();
+            this.nameReg_label = new System.Windows.Forms.Label();
+            this.login_button = new System.Windows.Forms.Button();
+            this.join_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // homeButton
+            // label1
             // 
-            this.homeButton.BackColor = System.Drawing.SystemColors.ControlText;
-            this.homeButton.FlatAppearance.BorderColor = System.Drawing.Color.Fuchsia;
-            this.homeButton.FlatAppearance.BorderSize = 0;
-            this.homeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.homeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.homeButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.homeButton.Location = new System.Drawing.Point(0, 11);
-            this.homeButton.Name = "homeButton";
-            this.homeButton.Size = new System.Drawing.Size(252, 108);
-            this.homeButton.TabIndex = 0;
-            this.homeButton.Text = "Home";
-            this.homeButton.UseVisualStyleBackColor = false;
-            this.homeButton.Click += new System.EventHandler(this.home_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(144, 59);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(122, 48);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Login";
             // 
-            // groupBox1
+            // label2
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox1.Controls.Add(this.teamsButton);
-            this.groupBox1.Controls.Add(this.accountButton);
-            this.groupBox1.Controls.Add(this.eventButton);
-            this.groupBox1.Controls.Add(this.homeButton);
-            this.groupBox1.Location = new System.Drawing.Point(-1, -12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1008, 119);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(704, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(176, 48);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Register";
             // 
-            // teamsButton
+            // email_label
             // 
-            this.teamsButton.BackColor = System.Drawing.SystemColors.ControlText;
-            this.teamsButton.FlatAppearance.BorderColor = System.Drawing.Color.Fuchsia;
-            this.teamsButton.FlatAppearance.BorderSize = 0;
-            this.teamsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.teamsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.teamsButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.teamsButton.Location = new System.Drawing.Point(504, 11);
-            this.teamsButton.Name = "teamsButton";
-            this.teamsButton.Size = new System.Drawing.Size(252, 108);
-            this.teamsButton.TabIndex = 3;
-            this.teamsButton.Text = "Teams";
-            this.teamsButton.UseVisualStyleBackColor = false;
-            this.teamsButton.Click += new System.EventHandler(this.teamsButton_Click);
+            this.email_label.AutoSize = true;
+            this.email_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.email_label.Location = new System.Drawing.Point(63, 184);
+            this.email_label.Name = "email_label";
+            this.email_label.Size = new System.Drawing.Size(60, 25);
+            this.email_label.TabIndex = 2;
+            this.email_label.Text = "Email";
             // 
-            // accountButton
+            // emailLog_textBox
             // 
-            this.accountButton.BackColor = System.Drawing.SystemColors.ControlText;
-            this.accountButton.FlatAppearance.BorderColor = System.Drawing.Color.Fuchsia;
-            this.accountButton.FlatAppearance.BorderSize = 0;
-            this.accountButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.accountButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.accountButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.accountButton.Location = new System.Drawing.Point(756, 11);
-            this.accountButton.Name = "accountButton";
-            this.accountButton.Size = new System.Drawing.Size(252, 108);
-            this.accountButton.TabIndex = 2;
-            this.accountButton.Text = "Account";
-            this.accountButton.UseVisualStyleBackColor = false;
-            this.accountButton.Click += new System.EventHandler(this.accountButton_Click);
+            this.emailLog_textBox.Location = new System.Drawing.Point(150, 188);
+            this.emailLog_textBox.Name = "emailLog_textBox";
+            this.emailLog_textBox.Size = new System.Drawing.Size(177, 22);
+            this.emailLog_textBox.TabIndex = 3;
             // 
-            // eventButton
+            // passwordLog_textBox
             // 
-            this.eventButton.BackColor = System.Drawing.SystemColors.ControlText;
-            this.eventButton.FlatAppearance.BorderColor = System.Drawing.Color.Fuchsia;
-            this.eventButton.FlatAppearance.BorderSize = 0;
-            this.eventButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.eventButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.eventButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.eventButton.Location = new System.Drawing.Point(252, 11);
-            this.eventButton.Name = "eventButton";
-            this.eventButton.Size = new System.Drawing.Size(252, 108);
-            this.eventButton.TabIndex = 1;
-            this.eventButton.Text = "Events";
-            this.eventButton.UseVisualStyleBackColor = false;
-            this.eventButton.Click += new System.EventHandler(this.eventButton_Click);
+            this.passwordLog_textBox.Location = new System.Drawing.Point(150, 243);
+            this.passwordLog_textBox.Name = "passwordLog_textBox";
+            this.passwordLog_textBox.Size = new System.Drawing.Size(177, 22);
+            this.passwordLog_textBox.TabIndex = 5;
             // 
-            // underPanel
+            // password_label
             // 
-            this.underPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.underPanel.Controls.Add(this.competitivesButton);
-            this.underPanel.Controls.Add(this.friendliesButton);
-            this.underPanel.Controls.Add(this.Events_dataGridView);
-            this.underPanel.Location = new System.Drawing.Point(-1, 107);
-            this.underPanel.Name = "underPanel";
-            this.underPanel.Size = new System.Drawing.Size(1008, 447);
-            this.underPanel.TabIndex = 3;
+            this.password_label.AutoSize = true;
+            this.password_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password_label.Location = new System.Drawing.Point(37, 240);
+            this.password_label.Name = "password_label";
+            this.password_label.Size = new System.Drawing.Size(98, 25);
+            this.password_label.TabIndex = 4;
+            this.password_label.Text = "Password";
             // 
-            // competitivesButton
+            // passwordReg_textBox
             // 
-            this.competitivesButton.BackColor = System.Drawing.SystemColors.ControlText;
-            this.competitivesButton.FlatAppearance.BorderColor = System.Drawing.Color.Fuchsia;
-            this.competitivesButton.FlatAppearance.BorderSize = 0;
-            this.competitivesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.competitivesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.competitivesButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.competitivesButton.Location = new System.Drawing.Point(630, 114);
-            this.competitivesButton.Name = "competitivesButton";
-            this.competitivesButton.Size = new System.Drawing.Size(252, 108);
-            this.competitivesButton.TabIndex = 3;
-            this.competitivesButton.Text = "Competitives";
-            this.competitivesButton.UseVisualStyleBackColor = false;
-            this.competitivesButton.Visible = false;
-            this.competitivesButton.Click += new System.EventHandler(this.competitivesButton_Click);
+            this.passwordReg_textBox.Location = new System.Drawing.Point(696, 298);
+            this.passwordReg_textBox.Name = "passwordReg_textBox";
+            this.passwordReg_textBox.Size = new System.Drawing.Size(177, 22);
+            this.passwordReg_textBox.TabIndex = 9;
             // 
-            // friendliesButton
+            // passwordReg_label
             // 
-            this.friendliesButton.BackColor = System.Drawing.SystemColors.ControlText;
-            this.friendliesButton.FlatAppearance.BorderColor = System.Drawing.Color.Fuchsia;
-            this.friendliesButton.FlatAppearance.BorderSize = 0;
-            this.friendliesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.friendliesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.friendliesButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.friendliesButton.Location = new System.Drawing.Point(126, 114);
-            this.friendliesButton.Name = "friendliesButton";
-            this.friendliesButton.Size = new System.Drawing.Size(252, 108);
-            this.friendliesButton.TabIndex = 2;
-            this.friendliesButton.Text = "Friendlies";
-            this.friendliesButton.UseVisualStyleBackColor = false;
-            this.friendliesButton.Visible = false;
-            this.friendliesButton.Click += new System.EventHandler(this.friendlies_Click);
+            this.passwordReg_label.AutoSize = true;
+            this.passwordReg_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordReg_label.Location = new System.Drawing.Point(583, 295);
+            this.passwordReg_label.Name = "passwordReg_label";
+            this.passwordReg_label.Size = new System.Drawing.Size(98, 25);
+            this.passwordReg_label.TabIndex = 8;
+            this.passwordReg_label.Text = "Password";
             // 
-            // Events_dataGridView
+            // emailReg_textBox
             // 
-            this.Events_dataGridView.AllowUserToDeleteRows = false;
-            this.Events_dataGridView.BackgroundColor = System.Drawing.SystemColors.GrayText;
-            this.Events_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Events_dataGridView.Location = new System.Drawing.Point(0, 0);
-            this.Events_dataGridView.Name = "Events_dataGridView";
-            this.Events_dataGridView.ReadOnly = true;
-            this.Events_dataGridView.RowHeadersWidth = 51;
-            this.Events_dataGridView.RowTemplate.Height = 24;
-            this.Events_dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Events_dataGridView.Size = new System.Drawing.Size(1008, 444);
-            this.Events_dataGridView.TabIndex = 0;
-            this.Events_dataGridView.Visible = false;
+            this.emailReg_textBox.Location = new System.Drawing.Point(696, 243);
+            this.emailReg_textBox.Name = "emailReg_textBox";
+            this.emailReg_textBox.Size = new System.Drawing.Size(177, 22);
+            this.emailReg_textBox.TabIndex = 7;
+            // 
+            // emailReg_label
+            // 
+            this.emailReg_label.AutoSize = true;
+            this.emailReg_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailReg_label.Location = new System.Drawing.Point(609, 239);
+            this.emailReg_label.Name = "emailReg_label";
+            this.emailReg_label.Size = new System.Drawing.Size(60, 25);
+            this.emailReg_label.TabIndex = 6;
+            this.emailReg_label.Text = "Email";
+            // 
+            // name_textBox
+            // 
+            this.name_textBox.Location = new System.Drawing.Point(696, 187);
+            this.name_textBox.Name = "name_textBox";
+            this.name_textBox.Size = new System.Drawing.Size(177, 22);
+            this.name_textBox.TabIndex = 11;
+            // 
+            // nameReg_label
+            // 
+            this.nameReg_label.AutoSize = true;
+            this.nameReg_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameReg_label.Location = new System.Drawing.Point(605, 184);
+            this.nameReg_label.Name = "nameReg_label";
+            this.nameReg_label.Size = new System.Drawing.Size(64, 25);
+            this.nameReg_label.TabIndex = 10;
+            this.nameReg_label.Text = "Name";
+            // 
+            // login_button
+            // 
+            this.login_button.Location = new System.Drawing.Point(252, 318);
+            this.login_button.Name = "login_button";
+            this.login_button.Size = new System.Drawing.Size(75, 26);
+            this.login_button.TabIndex = 12;
+            this.login_button.Text = "Login";
+            this.login_button.UseVisualStyleBackColor = true;
+            this.login_button.Click += new System.EventHandler(this.login_button_Click);
+            // 
+            // join_button
+            // 
+            this.join_button.Location = new System.Drawing.Point(805, 362);
+            this.join_button.Name = "join_button";
+            this.join_button.Size = new System.Drawing.Size(75, 23);
+            this.join_button.TabIndex = 13;
+            this.join_button.Text = "Join";
+            this.join_button.UseVisualStyleBackColor = true;
+            this.join_button.Click += new System.EventHandler(this.join_button_Click);
             // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1006, 553);
-            this.Controls.Add(this.underPanel);
-            this.Controls.Add(this.groupBox1);
-            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.ClientSize = new System.Drawing.Size(1008, 444);
+            this.Controls.Add(this.join_button);
+            this.Controls.Add(this.login_button);
+            this.Controls.Add(this.name_textBox);
+            this.Controls.Add(this.nameReg_label);
+            this.Controls.Add(this.passwordReg_textBox);
+            this.Controls.Add(this.passwordReg_label);
+            this.Controls.Add(this.emailReg_textBox);
+            this.Controls.Add(this.emailReg_label);
+            this.Controls.Add(this.passwordLog_textBox);
+            this.Controls.Add(this.password_label);
+            this.Controls.Add(this.emailLog_textBox);
+            this.Controls.Add(this.email_label);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "HomeForm";
-            this.Text = "Form1";
-            this.groupBox1.ResumeLayout(false);
-            this.underPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Events_dataGridView)).EndInit();
+            this.Text = "Home";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button homeButton;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button accountButton;
-        private System.Windows.Forms.Button eventButton;
-        private System.Windows.Forms.Panel underPanel;
-        private System.Windows.Forms.Button teamsButton;
-        private System.Windows.Forms.DataGridView Events_dataGridView;
-        private System.Windows.Forms.Button friendliesButton;
-        private System.Windows.Forms.Button competitivesButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label email_label;
+        private System.Windows.Forms.TextBox emailLog_textBox;
+        private System.Windows.Forms.TextBox passwordLog_textBox;
+        private System.Windows.Forms.Label password_label;
+        private System.Windows.Forms.TextBox passwordReg_textBox;
+        private System.Windows.Forms.Label passwordReg_label;
+        private System.Windows.Forms.TextBox emailReg_textBox;
+        private System.Windows.Forms.Label emailReg_label;
+        private System.Windows.Forms.TextBox name_textBox;
+        private System.Windows.Forms.Label nameReg_label;
+        private System.Windows.Forms.Button login_button;
+        private System.Windows.Forms.Button join_button;
     }
 }
-
