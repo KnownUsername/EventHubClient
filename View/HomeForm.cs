@@ -14,6 +14,7 @@ using System.Runtime.Serialization.Json;
 using System.IO;
 using BusinessObjects;
 using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace View
 {
@@ -50,7 +51,7 @@ namespace View
             #region URIConstruction
             HttpWebRequest request;
             StringBuilder uri;
-            string url = "https://localhost:44318/api/event/getFriendlyEvents";
+            string url = "https://localhost:44318/events/getFriendlyEvents";
 
             uri = new StringBuilder();
             uri.Append(url);
@@ -76,7 +77,7 @@ namespace View
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 string content = reader.ReadToEnd();
 
-               // MessageBox.Show(content)
+                //MessageBox.Show(content);
 
                 DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Event));
 
