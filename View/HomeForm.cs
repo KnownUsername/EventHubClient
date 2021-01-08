@@ -20,6 +20,9 @@ namespace View
 {
     public partial class HomeForm : Form
     {
+        CreateEventForm joinEventForm = new CreateEventForm();
+        
+
         public HomeForm()
         {
             InitializeComponent();
@@ -32,13 +35,16 @@ namespace View
             ReinitializeButtonsColor();
             homeButton.ForeColor = Color.Blue;
             homeButton.BackColor = Color.LightGray;
-
+            if (Events_dataGridView.Visible) Events_dataGridView.Visible = false;
             
         }
 
+
+        #region EVENTS
+
+        #region BUTTONS
         private void eventButton_Click(object sender, EventArgs e)
         {
-            List<Event> events = new List<Event>();
 
             #region VISUAL
             ReinitializeButtonsColor();
@@ -47,6 +53,33 @@ namespace View
 
             Events_dataGridView.Visible = true;
             #endregion
+
+            friendliesButton.Visible = true;
+            competitivesButton.Visible = true;
+        }
+
+        private void friendlies_Click(object sender, EventArgs e)
+        {
+            competitivesButton.Visible = false;
+            List<Event> events = new List<Event>();
+            events = GetFriendlyEvents(); // reception of events
+            EventDataGridViewFiller(events); // DataGrid fill with friendly events
+
+            Events_dataGridView.CellClick += Events_dataGridView_CellClick;
+        }
+
+        private void competitivesButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        #region METHODS
+        private List<Event> GetFriendlyEvents()
+        {
+
+            List<Event> events = new List<Event>();
 
             #region URIConstruction
             HttpWebRequest request;
@@ -57,12 +90,10 @@ namespace View
             uri.Append(url);
             #endregion
 
-            #region RequestPreparation
+            // RequestPreparation
             request = WebRequest.Create(uri.ToString()) as HttpWebRequest;
-            #endregion
 
             #region RequestSend
-
             using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)     //via GET
             {
                 if (response.StatusCode != HttpStatusCode.OK)
@@ -71,39 +102,70 @@ namespace View
                     throw new ApplicationException(message);
                 }
 
-                MessageBox.Show("All right!");
 
-    
+                // Storage of requested Json
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 string content = reader.ReadToEnd();
 
-                //MessageBox.Show(content);
-
-                DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Event));
-
-                //Event myDeserializedClass = (Event)jsonSerializer.ReadObject(response.GetResponseStream());
-                //Event myDeserializedClass = (Event)jsonSerializer.ReadObject(response.GetResponseStream());
-                //Event myDeserializedClass = (Event)jsonSerializer.ReadObject(response.GetResponseStream());
-               // Event eventTest = JsonConvert.DeserializeObject<Event>(content);
+                // Deserialization of received Json
                 events = JsonConvert.DeserializeObject<List<Event>>(content);
-                Events_dataGridView.DataSource = events;
+                return events;
+            }
+        }
+
+        private void Events_dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.ColumnIndex == Events_dataGridView.Columns["enter_event"].Index) // Check if was clicked a button on table
+            {
+
+                Point startPoint = new Point(0, 16);
+                joinEventForm.Location = startPoint;
+                joinEventForm.Show();
+            }
+        }
+
+
+        private void EventDataGridViewFiller(List<Event> events)
+        {
+
+            Events_dataGridView.DataSource = events; // Fill DataGrid with events
+
+            // Add button to join an event
+            DataGridViewButtonColumn joinEventButtonColumn = new DataGridViewButtonColumn();
+            joinEventButtonColumn.Name = "enter_event";
+            joinEventButtonColumn.Text = "Join";
+
+            Events_dataGridView.RowHeadersVisible = false; // Remove of default blank column
+
+            if (Events_dataGridView.Columns["enter_event"] == null) // Check if column already exists
+            {
+                Events_dataGridView.Columns.Insert(0, joinEventButtonColumn); // Introduction of join button to table
             }
 
-            #endregion
-
         }
-        private void aboutButton_Click(object sender, EventArgs e)
+        #endregion
+
+        #endregion
+
+
+        #endregion
+        private void teamsButton_Click(object sender, EventArgs e)
         {
             ReinitializeButtonsColor();
-            aboutButton.ForeColor = Color.Green;
-            aboutButton.BackColor = Color.LightGray;
-        }
+            teamsButton.ForeColor = Color.Green;
+            teamsButton.BackColor = Color.LightGray;
+            if (Events_dataGridView.Visible) Events_dataGridView.Visible = false;
 
+
+        }
+    
         private void accountButton_Click(object sender, EventArgs e)
         {
             ReinitializeButtonsColor();
             accountButton.ForeColor = Color.IndianRed;
             accountButton.BackColor = Color.LightGray;
+            if (Events_dataGridView.Visible) Events_dataGridView.Visible = false;
+
         }
 
 
@@ -120,7 +182,9 @@ namespace View
         private void groupBox2_Enter(object sender, EventArgs e)
         {
 
+            
         }
+
 
     }
 }

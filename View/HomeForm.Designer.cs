@@ -31,13 +31,15 @@ namespace View
         {
             this.homeButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.aboutButton = new System.Windows.Forms.Button();
+            this.teamsButton = new System.Windows.Forms.Button();
             this.accountButton = new System.Windows.Forms.Button();
             this.eventButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.underPanel = new System.Windows.Forms.Panel();
+            this.competitivesButton = new System.Windows.Forms.Button();
+            this.friendliesButton = new System.Windows.Forms.Button();
             this.Events_dataGridView = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.underPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Events_dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,7 +62,7 @@ namespace View
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox1.Controls.Add(this.aboutButton);
+            this.groupBox1.Controls.Add(this.teamsButton);
             this.groupBox1.Controls.Add(this.accountButton);
             this.groupBox1.Controls.Add(this.eventButton);
             this.groupBox1.Controls.Add(this.homeButton);
@@ -71,21 +73,21 @@ namespace View
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // aboutButton
+            // teamsButton
             // 
-            this.aboutButton.BackColor = System.Drawing.SystemColors.ControlText;
-            this.aboutButton.FlatAppearance.BorderColor = System.Drawing.Color.Fuchsia;
-            this.aboutButton.FlatAppearance.BorderSize = 0;
-            this.aboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.aboutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.aboutButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.aboutButton.Location = new System.Drawing.Point(504, 11);
-            this.aboutButton.Name = "aboutButton";
-            this.aboutButton.Size = new System.Drawing.Size(252, 108);
-            this.aboutButton.TabIndex = 3;
-            this.aboutButton.Text = "About";
-            this.aboutButton.UseVisualStyleBackColor = false;
-            this.aboutButton.Click += new System.EventHandler(this.aboutButton_Click);
+            this.teamsButton.BackColor = System.Drawing.SystemColors.ControlText;
+            this.teamsButton.FlatAppearance.BorderColor = System.Drawing.Color.Fuchsia;
+            this.teamsButton.FlatAppearance.BorderSize = 0;
+            this.teamsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.teamsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.teamsButton.ForeColor = System.Drawing.SystemColors.Info;
+            this.teamsButton.Location = new System.Drawing.Point(504, 11);
+            this.teamsButton.Name = "teamsButton";
+            this.teamsButton.Size = new System.Drawing.Size(252, 108);
+            this.teamsButton.TabIndex = 3;
+            this.teamsButton.Text = "Teams";
+            this.teamsButton.UseVisualStyleBackColor = false;
+            this.teamsButton.Click += new System.EventHandler(this.teamsButton_Click);
             // 
             // accountButton
             // 
@@ -119,24 +121,63 @@ namespace View
             this.eventButton.UseVisualStyleBackColor = false;
             this.eventButton.Click += new System.EventHandler(this.eventButton_Click);
             // 
-            // panel1
+            // underPanel
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.panel1.Controls.Add(this.Events_dataGridView);
-            this.panel1.Location = new System.Drawing.Point(-1, 107);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1008, 447);
-            this.panel1.TabIndex = 3;
+            this.underPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.underPanel.Controls.Add(this.competitivesButton);
+            this.underPanel.Controls.Add(this.friendliesButton);
+            this.underPanel.Controls.Add(this.Events_dataGridView);
+            this.underPanel.Location = new System.Drawing.Point(-1, 107);
+            this.underPanel.Name = "underPanel";
+            this.underPanel.Size = new System.Drawing.Size(1008, 447);
+            this.underPanel.TabIndex = 3;
+            // 
+            // competitivesButton
+            // 
+            this.competitivesButton.BackColor = System.Drawing.SystemColors.ControlText;
+            this.competitivesButton.FlatAppearance.BorderColor = System.Drawing.Color.Fuchsia;
+            this.competitivesButton.FlatAppearance.BorderSize = 0;
+            this.competitivesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.competitivesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.competitivesButton.ForeColor = System.Drawing.SystemColors.Info;
+            this.competitivesButton.Location = new System.Drawing.Point(630, 114);
+            this.competitivesButton.Name = "competitivesButton";
+            this.competitivesButton.Size = new System.Drawing.Size(252, 108);
+            this.competitivesButton.TabIndex = 3;
+            this.competitivesButton.Text = "Competitives";
+            this.competitivesButton.UseVisualStyleBackColor = false;
+            this.competitivesButton.Visible = false;
+            this.competitivesButton.Click += new System.EventHandler(this.competitivesButton_Click);
+            // 
+            // friendliesButton
+            // 
+            this.friendliesButton.BackColor = System.Drawing.SystemColors.ControlText;
+            this.friendliesButton.FlatAppearance.BorderColor = System.Drawing.Color.Fuchsia;
+            this.friendliesButton.FlatAppearance.BorderSize = 0;
+            this.friendliesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.friendliesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.friendliesButton.ForeColor = System.Drawing.SystemColors.Info;
+            this.friendliesButton.Location = new System.Drawing.Point(126, 114);
+            this.friendliesButton.Name = "friendliesButton";
+            this.friendliesButton.Size = new System.Drawing.Size(252, 108);
+            this.friendliesButton.TabIndex = 2;
+            this.friendliesButton.Text = "Friendlies";
+            this.friendliesButton.UseVisualStyleBackColor = false;
+            this.friendliesButton.Visible = false;
+            this.friendliesButton.Click += new System.EventHandler(this.friendlies_Click);
             // 
             // Events_dataGridView
             // 
-            this.Events_dataGridView.BackgroundColor = System.Drawing.SystemColors.MenuHighlight;
+            this.Events_dataGridView.AllowUserToDeleteRows = false;
+            this.Events_dataGridView.BackgroundColor = System.Drawing.SystemColors.GrayText;
             this.Events_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Events_dataGridView.Location = new System.Drawing.Point(0, 0);
             this.Events_dataGridView.Name = "Events_dataGridView";
+            this.Events_dataGridView.ReadOnly = true;
             this.Events_dataGridView.RowHeadersWidth = 51;
             this.Events_dataGridView.RowTemplate.Height = 24;
-            this.Events_dataGridView.Size = new System.Drawing.Size(1008, 447);
+            this.Events_dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Events_dataGridView.Size = new System.Drawing.Size(1008, 444);
             this.Events_dataGridView.TabIndex = 0;
             this.Events_dataGridView.Visible = false;
             // 
@@ -145,13 +186,13 @@ namespace View
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1006, 553);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.underPanel);
             this.Controls.Add(this.groupBox1);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "HomeForm";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.underPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Events_dataGridView)).EndInit();
             this.ResumeLayout(false);
 
@@ -163,9 +204,11 @@ namespace View
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button accountButton;
         private System.Windows.Forms.Button eventButton;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button aboutButton;
+        private System.Windows.Forms.Panel underPanel;
+        private System.Windows.Forms.Button teamsButton;
         private System.Windows.Forms.DataGridView Events_dataGridView;
+        private System.Windows.Forms.Button friendliesButton;
+        private System.Windows.Forms.Button competitivesButton;
     }
 }
 
