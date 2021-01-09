@@ -11,29 +11,27 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entities.EntitiesService;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace View
 {
+
     public partial class HomeForm : Form
     {          
-        
-        User currentUser = new User();
-        string token;
-        
+             
         public HomeForm()
         {
             InitializeComponent();
-  
 
         }
 
         private void login_button_Click(object sender, EventArgs e)
         {
-            currentUser.Email = emailLog_textBox.Text.ToString();
-            currentUser.Password = emailReg_textBox.Text.ToString();
+            Session.CurrentUser.Email = emailLog_textBox.Text.ToString();
+            Session.CurrentUser.Password = emailReg_textBox.Text.ToString();
 
             // Send info to service
-            TryLogin(currentUser);
+            TryLogin(Session.CurrentUser);
 
             
 
@@ -41,13 +39,12 @@ namespace View
 
         private void join_button_Click(object sender, EventArgs e)
         {
-            currentUser.Name = name_textBox.Text.ToString();
-            currentUser.Email = emailReg_textBox.Text.ToString();
-            currentUser.Password = passwordReg_textBox.Text.ToString();
+            Session.CurrentUser.Name = name_textBox.Text.ToString();
+            Session.CurrentUser.Email = emailReg_textBox.Text.ToString();
+            Session.CurrentUser.Password = passwordReg_textBox.Text.ToString();
 
             // Send info to service 
             
-
         }
 
         /// <summary>
@@ -65,9 +62,6 @@ namespace View
             //Definir tipo de resultado: JSON
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            // Associar o token ao header do objeto do tipo HttpClient
-            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);         
-
             // Converte objeto para formato Json
             string jsonString = JsonSerializer.Serialize(user);
             var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");   //Header
@@ -76,19 +70,33 @@ namespace View
             HttpResponseMessage response = await client.PostAsync(url, stringContent);  //Post
             //var response = client.PostAsync(url, stringContent);  //Post
 
-            string result = response.Content.ReadAsStringAsync().Result;
-            //string result = response.Result.ToString();
+            Session.Token = response.Content.ReadAsStringAsync().Result;
 
-             //Verifica se o retorno é 200
+            //Verifica se o retorno é 200
             if (response.IsSuccessStatusCode)
             {
-               MessageBox.Show("Done!");
+                MessageBox.Show("Done!");
                 return true;
             }
 
             return false;
         }
 
+    }
+
+    /// <summary>
+    /// Current Session 
+    /// </summary>
+    public static class Session
+    {
+        static User currentUser;
+        static string token;
+
+        public static User CurrentUser
+        {
+            get => currentUser; set => currentUser = value;
+        }
+        public static string Token { get => token; set => token = value; }
 
     }
 }

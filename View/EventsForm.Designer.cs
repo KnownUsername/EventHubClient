@@ -31,8 +31,10 @@ namespace View
         {
             this.friendliesButton = new System.Windows.Forms.Button();
             this.competitivesButton = new System.Windows.Forms.Button();
-            this.Events_dataGridView = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.Events_dataGridView)).BeginInit();
+            this.events_dataGridView = new System.Windows.Forms.DataGridView();
+            this.addEvent_Button = new System.Windows.Forms.Button();
+            this.addEvent_Label = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.events_dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // friendliesButton
@@ -69,18 +71,40 @@ namespace View
             // 
             // Events_dataGridView
             // 
-            this.Events_dataGridView.AllowUserToDeleteRows = false;
-            this.Events_dataGridView.BackgroundColor = System.Drawing.SystemColors.GrayText;
-            this.Events_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Events_dataGridView.Location = new System.Drawing.Point(0, 172);
-            this.Events_dataGridView.Name = "Events_dataGridView";
-            this.Events_dataGridView.ReadOnly = true;
-            this.Events_dataGridView.RowHeadersWidth = 51;
-            this.Events_dataGridView.RowTemplate.Height = 24;
-            this.Events_dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Events_dataGridView.Size = new System.Drawing.Size(1008, 272);
-            this.Events_dataGridView.TabIndex = 5;
-            this.Events_dataGridView.Visible = false;
+            this.events_dataGridView.AllowUserToDeleteRows = false;
+            this.events_dataGridView.BackgroundColor = System.Drawing.SystemColors.GrayText;
+            this.events_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.events_dataGridView.Location = new System.Drawing.Point(0, 172);
+            this.events_dataGridView.Name = "Events_dataGridView";
+            this.events_dataGridView.ReadOnly = true;
+            this.events_dataGridView.RowHeadersWidth = 51;
+            this.events_dataGridView.RowTemplate.Height = 24;
+            this.events_dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.events_dataGridView.Size = new System.Drawing.Size(1008, 272);
+            this.events_dataGridView.TabIndex = 5;
+            this.events_dataGridView.Visible = false;
+            // 
+            // addEvent_Button
+            // 
+            this.addEvent_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addEvent_Button.ForeColor = System.Drawing.Color.ForestGreen;
+            this.addEvent_Button.Location = new System.Drawing.Point(102, 58);
+            this.addEvent_Button.Name = "addEvent_Button";
+            this.addEvent_Button.Size = new System.Drawing.Size(181, 76);
+            this.addEvent_Button.TabIndex = 6;
+            this.addEvent_Button.Text = "+";
+            this.addEvent_Button.UseVisualStyleBackColor = true;
+            this.addEvent_Button.Visible = false;
+            // 
+            // addEvent_Label
+            // 
+            this.addEvent_Label.AutoSize = true;
+            this.addEvent_Label.Location = new System.Drawing.Point(109, 137);
+            this.addEvent_Label.Name = "addEvent_Label";
+            this.addEvent_Label.Size = new System.Drawing.Size(127, 17);
+            this.addEvent_Label.TabIndex = 7;
+            this.addEvent_Label.Text = "Add Friendly Event";
+            this.addEvent_Label.Visible = false;
             // 
             // EventsForm
             // 
@@ -88,14 +112,17 @@ namespace View
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gold;
             this.ClientSize = new System.Drawing.Size(1008, 444);
-            this.Controls.Add(this.Events_dataGridView);
+            this.Controls.Add(this.addEvent_Label);
+            this.Controls.Add(this.addEvent_Button);
+            this.Controls.Add(this.events_dataGridView);
             this.Controls.Add(this.competitivesButton);
             this.Controls.Add(this.friendliesButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EventsForm";
             this.Text = "EventsForm";
-            ((System.ComponentModel.ISupportInitialize)(this.Events_dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.events_dataGridView)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -103,6 +130,8 @@ namespace View
 
         private System.Windows.Forms.Button friendliesButton;
         private System.Windows.Forms.Button competitivesButton;
-        private System.Windows.Forms.DataGridView Events_dataGridView;
+        private System.Windows.Forms.DataGridView events_dataGridView;
+        private System.Windows.Forms.Button addEvent_Button;
+        private System.Windows.Forms.Label addEvent_Label;
     }
 }

@@ -20,12 +20,11 @@ namespace View
 {
     public partial class GeneralForm : Form
     {
-        CreateEventForm createEventForm = new CreateEventForm();
+        //CreateEventForm createEventForm = new CreateEventForm();
 
         public GeneralForm()
         {
             InitializeComponent();
-
 
         }
 
@@ -34,10 +33,8 @@ namespace View
             ReinitializeButtonsColor();
             homeButton.ForeColor = Color.Blue;
             homeButton.BackColor = Color.LightGray;
-            //if (Events_dataGridView.Visible) Events_dataGridView.Visible = false;
 
             HomeForm homeForm = new HomeForm();
-            //homeForm.Show();
             ChangePanelView(homeForm);
         }
         private void eventButton_Click(object sender, EventArgs e)
@@ -71,22 +68,24 @@ namespace View
         }
 
 
+
         public void ReinitializeButtonsColor()
         {
             
-           foreach (Button button in groupBox1.Controls.OfType<Button>())
+           foreach (Button button in header_groupBox.Controls.OfType<Button>())
             {
                 button.ForeColor = Color.White;
                 button.BackColor = Color.Black;
             }
         }
+
         private void groupBox2_Enter(object sender, EventArgs e)
         {
-
             
         }
         public void ChangePanelView(Form newForm)
         {
+  
             foreach(Control control in underPanel.Controls)
             {
                 control.Visible = false;
@@ -100,4 +99,5 @@ namespace View
         }
 
     }
+
 }

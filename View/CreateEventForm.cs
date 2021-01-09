@@ -16,8 +16,8 @@ namespace View
 
         EventStatus initialEventStatus;
      
-
-        public CreateEventForm()
+        
+        public CreateEventForm(EventType eventType)
         {
 
             InitializeComponent();

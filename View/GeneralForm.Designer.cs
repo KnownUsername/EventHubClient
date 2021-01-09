@@ -30,12 +30,12 @@ namespace View
         private void InitializeComponent()
         {
             this.homeButton = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.header_groupBox = new System.Windows.Forms.GroupBox();
             this.teamsButton = new System.Windows.Forms.Button();
             this.accountButton = new System.Windows.Forms.Button();
             this.eventButton = new System.Windows.Forms.Button();
             this.underPanel = new System.Windows.Forms.Panel();
-            this.groupBox1.SuspendLayout();
+            this.header_groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // homeButton
@@ -54,19 +54,19 @@ namespace View
             this.homeButton.UseVisualStyleBackColor = false;
             this.homeButton.Click += new System.EventHandler(this.home_Click);
             // 
-            // groupBox1
+            // header_groupBox
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox1.Controls.Add(this.teamsButton);
-            this.groupBox1.Controls.Add(this.accountButton);
-            this.groupBox1.Controls.Add(this.eventButton);
-            this.groupBox1.Controls.Add(this.homeButton);
-            this.groupBox1.Location = new System.Drawing.Point(-1, -12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1008, 119);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.header_groupBox.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.header_groupBox.Controls.Add(this.teamsButton);
+            this.header_groupBox.Controls.Add(this.accountButton);
+            this.header_groupBox.Controls.Add(this.eventButton);
+            this.header_groupBox.Controls.Add(this.homeButton);
+            this.header_groupBox.Location = new System.Drawing.Point(-1, -12);
+            this.header_groupBox.Name = "header_groupBox";
+            this.header_groupBox.Size = new System.Drawing.Size(1008, 119);
+            this.header_groupBox.TabIndex = 1;
+            this.header_groupBox.TabStop = false;
+            this.header_groupBox.Text = "groupBox1";
             // 
             // teamsButton
             // 
@@ -130,11 +130,11 @@ namespace View
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1006, 553);
             this.Controls.Add(this.underPanel);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.header_groupBox);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "GeneralForm";
-            this.Text = "Form1";
-            this.groupBox1.ResumeLayout(false);
+            this.Text = "EventHub";
+            this.header_groupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -142,7 +142,7 @@ namespace View
         #endregion
 
         private System.Windows.Forms.Button homeButton;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox header_groupBox;
         private System.Windows.Forms.Button accountButton;
         private System.Windows.Forms.Button eventButton;
         private System.Windows.Forms.Panel underPanel;

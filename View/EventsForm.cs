@@ -11,41 +11,74 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace View
 {
+    public enum EventType
+    {
+        Friendly,
+        Competitive
+    }
+
     public partial class EventsForm : Form
     {
+        
         public EventsForm()
         {
             InitializeComponent();
+            
         }
 
         #region EVENTS
 
         #region BUTTONS
-
+        /// <summary>
+        /// [ButtonClick] Friendly Events
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void friendliesButton_Click(object sender, EventArgs e)
         {
             competitivesButton.Visible = false;
             friendliesButton.Visible = false;
 
+            EventType eventType = new EventType();
+            eventType = EventType.Friendly;
+
             List<Event> friendlyEvents = new List<Event>();
             friendlyEvents = GetFriendlyEvents(); // reception of events
             EventsDataGridViewFiller(friendlyEvents); // DataGrid fill with friendly events
-            Events_dataGridView.Visible = true;
+            
+            events_dataGridView.Visible = true;
+            addEvent_Label.Visible = true;
+            addEvent_Button.Visible = true;
 
-            Events_dataGridView.CellClick += Events_dataGridView_CellClick;
+            events_dataGridView.CellClick += Events_dataGridView_CellClick;
         }
 
+        /// <summary>
+        /// [ButtonClick] Competitive Events
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void competitivesButton_Click(object sender, EventArgs e)
         {
             competitivesButton.Visible = false;
             friendliesButton.Visible = false;
 
+            EventType eventType = new EventType();
+            eventType = EventType.Competitive;
+
             List<Event> competitiveEvents = new List<Event>();
             competitiveEvents = GetCompetitiveEvents(); // reception of events
             EventsDataGridViewFiller(competitiveEvents); // DataGrid fill with friendly events
+            events_dataGridView.Visible = true;
+
+            /*  Add Event Section    */
+            addEvent_Label.Text = "Add Competitive Event";
+            addEvent_Label.Visible = true;
+            addEvent_Button.Visible = true;
 
         }
 
@@ -123,22 +156,45 @@ namespace View
                 return events;
             }
         }
+       
+
         private void Events_dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == Events_dataGridView.Columns["enter_event"].Index) // Check if was clicked a button on table
-            {
 
-                Events_dataGridView.Visible = false;
-               // ChangePanelView(createEventForm);
+            if (e.ColumnIndex == events_dataGridView.Columns["enter_event"].Index) // Check if was clicked a button on table
+            {
+                
+                JoinEventForm joinEventForm = new JoinEventForm();
+                //Events_dataGridView.Visible = false;
+                GeneralForm auxForm = new GeneralForm();
+                auxForm = GetGeneralForm();
+
+                auxForm.ChangePanelView(joinEventForm);
+                Close();
+
             }
         }
 
+        public GeneralForm GetGeneralForm()
+        {
+            GeneralForm desiredForm = new GeneralForm();
+           foreach(Form openForm in Application.OpenForms)
+            {
+                if (openForm.GetType().Equals(typeof(GeneralForm)))
+                {
+                    desiredForm = (GeneralForm)openForm;
+                    break;
+                }
+            }
 
+            return desiredForm;
+        }
+        
 
         private void EventsDataGridViewFiller(List<Event> events)
         {
 
-            Events_dataGridView.DataSource = events; // Fill DataGrid with events
+            events_dataGridView.DataSource = events; // Fill DataGrid with events
 
             // Add button to join an event
             DataGridViewButtonColumn joinEventButtonColumn = new DataGridViewButtonColumn();
@@ -146,11 +202,11 @@ namespace View
             joinEventButtonColumn.Text = "Join";
             joinEventButtonColumn.UseColumnTextForButtonValue = true; // so buttons' name shows
 
-            Events_dataGridView.RowHeadersVisible = false; // Remove of default blank column
+            events_dataGridView.RowHeadersVisible = false; // Remove of default blank column
 
-            if (Events_dataGridView.Columns["enter_event"] == null) // Check if column already exists
+            if (events_dataGridView.Columns["enter_event"] == null) // Check if column already exists
             {
-                Events_dataGridView.Columns.Insert(0, joinEventButtonColumn); // Introduction of join button to table
+                events_dataGridView.Columns.Insert(0, joinEventButtonColumn); // Introduction of join button to table
             }
 
         }
