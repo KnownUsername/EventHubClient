@@ -32,7 +32,8 @@ namespace View
 
             List<Event> friendlyEvents = new List<Event>();
             friendlyEvents = GetFriendlyEvents(); // reception of events
-            EventDataGridViewFiller(friendlyEvents); // DataGrid fill with friendly events
+            EventsDataGridViewFiller(friendlyEvents); // DataGrid fill with friendly events
+            Events_dataGridView.Visible = true;
 
             Events_dataGridView.CellClick += Events_dataGridView_CellClick;
         }
@@ -44,7 +45,7 @@ namespace View
 
             List<Event> competitiveEvents = new List<Event>();
             competitiveEvents = GetCompetitiveEvents(); // reception of events
-            EventDataGridViewFiller(competitiveEvents); // DataGrid fill with friendly events
+            EventsDataGridViewFiller(competitiveEvents); // DataGrid fill with friendly events
 
         }
 
@@ -134,7 +135,7 @@ namespace View
 
 
 
-        private void EventDataGridViewFiller(List<Event> events)
+        private void EventsDataGridViewFiller(List<Event> events)
         {
 
             Events_dataGridView.DataSource = events; // Fill DataGrid with events
@@ -143,6 +144,7 @@ namespace View
             DataGridViewButtonColumn joinEventButtonColumn = new DataGridViewButtonColumn();
             joinEventButtonColumn.Name = "enter_event";
             joinEventButtonColumn.Text = "Join";
+            joinEventButtonColumn.UseColumnTextForButtonValue = true; // so buttons' name shows
 
             Events_dataGridView.RowHeadersVisible = false; // Remove of default blank column
 

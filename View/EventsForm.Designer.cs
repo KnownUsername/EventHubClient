@@ -72,13 +72,13 @@ namespace View
             this.Events_dataGridView.AllowUserToDeleteRows = false;
             this.Events_dataGridView.BackgroundColor = System.Drawing.SystemColors.GrayText;
             this.Events_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Events_dataGridView.Location = new System.Drawing.Point(0, 0);
+            this.Events_dataGridView.Location = new System.Drawing.Point(0, 172);
             this.Events_dataGridView.Name = "Events_dataGridView";
             this.Events_dataGridView.ReadOnly = true;
             this.Events_dataGridView.RowHeadersWidth = 51;
             this.Events_dataGridView.RowTemplate.Height = 24;
             this.Events_dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Events_dataGridView.Size = new System.Drawing.Size(1008, 444);
+            this.Events_dataGridView.Size = new System.Drawing.Size(1008, 272);
             this.Events_dataGridView.TabIndex = 5;
             this.Events_dataGridView.Visible = false;
             // 
