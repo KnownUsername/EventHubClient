@@ -164,7 +164,7 @@ namespace View
             this.friendliesButton.Text = "Friendlies";
             this.friendliesButton.UseVisualStyleBackColor = false;
             this.friendliesButton.Visible = false;
-            this.friendliesButton.Click += new System.EventHandler(this.friendlies_Click);
+            this.friendliesButton.Click += new System.EventHandler(this.friendliesButton_Click);
             // 
             // Events_dataGridView
             // 

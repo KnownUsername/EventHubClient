@@ -33,6 +33,9 @@ namespace View
             currentUser.Password = emailReg_textBox.Text.ToString();
 
             // Send info to service
+            TryLogin(currentUser);
+
+            
 
         }
 
@@ -43,10 +46,16 @@ namespace View
             currentUser.Password = passwordReg_textBox.Text.ToString();
 
             // Send info to service 
+            
 
         }
 
-        private bool TryLogin(User user)
+        /// <summary>
+        /// Tries to login 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        private async Task<bool> TryLogin(User user)
         {
             string url = "https://localhost:44318/api/user/login";
 
@@ -64,18 +73,22 @@ namespace View
             var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");   //Header
 
             // Espera o resultado
-            HttpResponseMessage response = client. Post(url, stringContent);  //Post
+            HttpResponseMessage response = await client.PostAsync(url, stringContent);  //Post
+            //var response = client.PostAsync(url, stringContent);  //Post
 
             string result = response.Content.ReadAsStringAsync().Result;
+            //string result = response.Result.ToString();
 
-            // Verifica se o retorno é 200
+             //Verifica se o retorno é 200
             if (response.IsSuccessStatusCode)
             {
-                MessageBox.Show("Done!");
+               MessageBox.Show("Done!");
+                return true;
             }
 
-            return true;
+            return false;
         }
+
 
     }
 }
