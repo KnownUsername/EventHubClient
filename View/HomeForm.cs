@@ -68,6 +68,7 @@ namespace View
 
             // Espera o resultado
             HttpResponseMessage response = await client.PostAsync(url, stringContent);  //Post
+
             //var response = client.PostAsync(url, stringContent);  //Post
 
             Session.Token = response.Content.ReadAsStringAsync().Result;

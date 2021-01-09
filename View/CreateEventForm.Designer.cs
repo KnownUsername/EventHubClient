@@ -47,7 +47,7 @@ namespace View
             this.teamMax_textBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.entryFee_textBox = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.entryFee_label = new System.Windows.Forms.Label();
             this.eventStatus_Picker = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -157,6 +157,7 @@ namespace View
             this.confirm_button.TabIndex = 13;
             this.confirm_button.Text = "Confirm";
             this.confirm_button.UseVisualStyleBackColor = true;
+            this.confirm_button.Click += new System.EventHandler(this.confirm_button_Click);
             // 
             // sport_textBox
             // 
@@ -192,26 +193,26 @@ namespace View
             // 
             // entryFee_textBox
             // 
-            this.entryFee_textBox.Location = new System.Drawing.Point(677, 270);
+            this.entryFee_textBox.Location = new System.Drawing.Point(677, 314);
             this.entryFee_textBox.Name = "entryFee_textBox";
             this.entryFee_textBox.Size = new System.Drawing.Size(100, 22);
             this.entryFee_textBox.TabIndex = 19;
             this.entryFee_textBox.Visible = false;
             // 
-            // label8
+            // entryFee_label
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(592, 275);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(69, 17);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Entry Fee";
-            this.label8.Visible = false;
+            this.entryFee_label.AutoSize = true;
+            this.entryFee_label.Location = new System.Drawing.Point(592, 319);
+            this.entryFee_label.Name = "entryFee_label";
+            this.entryFee_label.Size = new System.Drawing.Size(69, 17);
+            this.entryFee_label.TabIndex = 18;
+            this.entryFee_label.Text = "Entry Fee";
+            this.entryFee_label.Visible = false;
             // 
             // eventStatus_Picker
             // 
             this.eventStatus_Picker.FormattingEnabled = true;
-            this.eventStatus_Picker.Location = new System.Drawing.Point(677, 319);
+            this.eventStatus_Picker.Location = new System.Drawing.Point(656, 272);
             this.eventStatus_Picker.Name = "eventStatus_Picker";
             this.eventStatus_Picker.Size = new System.Drawing.Size(121, 24);
             this.eventStatus_Picker.TabIndex = 20;
@@ -220,7 +221,7 @@ namespace View
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(619, 319);
+            this.label9.Location = new System.Drawing.Point(598, 272);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(48, 17);
             this.label9.TabIndex = 21;
@@ -235,7 +236,7 @@ namespace View
             this.Controls.Add(this.label9);
             this.Controls.Add(this.eventStatus_Picker);
             this.Controls.Add(this.entryFee_textBox);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.entryFee_label);
             this.Controls.Add(this.teamMax_textBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.sport_textBox);
@@ -282,7 +283,7 @@ namespace View
         private System.Windows.Forms.TextBox teamMax_textBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox entryFee_textBox;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label entryFee_label;
         private System.Windows.Forms.ComboBox eventStatus_Picker;
         private System.Windows.Forms.Label label9;
     }

@@ -23,7 +23,7 @@ namespace View
 
     public partial class EventsForm : Form
     {
-        
+        EventType eventType = new EventType();
         public EventsForm()
         {
             InitializeComponent();
@@ -43,7 +43,6 @@ namespace View
             competitivesButton.Visible = false;
             friendliesButton.Visible = false;
 
-            EventType eventType = new EventType();
             eventType = EventType.Friendly;
 
             List<Event> friendlyEvents = new List<Event>();
@@ -67,7 +66,6 @@ namespace View
             competitivesButton.Visible = false;
             friendliesButton.Visible = false;
 
-            EventType eventType = new EventType();
             eventType = EventType.Competitive;
 
             List<Event> competitiveEvents = new List<Event>();
@@ -158,6 +156,11 @@ namespace View
         }
        
 
+        /// <summary>
+        /// Redirects user to JoinEvent window, if he clicks on "Join" button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Events_dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -212,9 +215,20 @@ namespace View
         }
 
         #endregion
-        #endregion
-        #endregion
+
         #endregion
 
+        #endregion
+
+        #endregion
+
+        private void addEvent_Button_Click(object sender, EventArgs e)
+        {
+            GeneralForm auxForm = new GeneralForm();
+            auxForm = GetGeneralForm();
+            CreateEventForm createEventForm = new CreateEventForm(eventType);
+
+            auxForm.ChangePanelView(createEventForm);
+        }
     }
 }

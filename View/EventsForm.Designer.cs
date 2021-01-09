@@ -69,13 +69,13 @@ namespace View
             this.competitivesButton.UseVisualStyleBackColor = false;
             this.competitivesButton.Click += new System.EventHandler(this.competitivesButton_Click);
             // 
-            // Events_dataGridView
+            // events_dataGridView
             // 
             this.events_dataGridView.AllowUserToDeleteRows = false;
             this.events_dataGridView.BackgroundColor = System.Drawing.SystemColors.GrayText;
             this.events_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.events_dataGridView.Location = new System.Drawing.Point(0, 172);
-            this.events_dataGridView.Name = "Events_dataGridView";
+            this.events_dataGridView.Name = "events_dataGridView";
             this.events_dataGridView.ReadOnly = true;
             this.events_dataGridView.RowHeadersWidth = 51;
             this.events_dataGridView.RowTemplate.Height = 24;
@@ -95,6 +95,7 @@ namespace View
             this.addEvent_Button.Text = "+";
             this.addEvent_Button.UseVisualStyleBackColor = true;
             this.addEvent_Button.Visible = false;
+            this.addEvent_Button.Click += new System.EventHandler(this.addEvent_Button_Click);
             // 
             // addEvent_Label
             // 
