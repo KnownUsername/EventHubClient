@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entities.EntitiesService;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http.Formatting;
 
 namespace View
 {
@@ -53,23 +54,24 @@ namespace View
         /// <returns></returns>
         private async Task<bool> TryLogin(User user)
         {
-            string url = "https://localhost:44318/api/users/login";
+            string url = "https://localhost:44318/users/login";
+            string url2 = "https://localhost:44318/";
 
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-
+            client.BaseAddress = new Uri(url2);
+            
             //Definir tipo de resultado: JSON
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             // Converte objeto para formato Json
-            string jsonString = JsonSerializer.Serialize<User>(user);
+            string jsonString = JsonSerializer.Serialize(user);
             var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");   //Header
 
             // Espera o resultado
-            HttpResponseMessage response =  client.PostAsync(url, stringContent).Result;  //Post
+            HttpResponseMessage response =  client.PostAsync("users/login", stringContent).Result;  //Post
+            HttpResponseMessage response2 = await client.PostAsJsonAsync("users/login", user);
 
             //var response = client.PostAsync(url, stringContent);  //Post
-
             Session.Token = response.Content.ReadAsStringAsync().Result;
 
             //Verifica se o retorno é 200
@@ -78,7 +80,7 @@ namespace View
                 MessageBox.Show("Done!");
                 return true;
             }
-
+            else MessageBox.Show("False");
             return false;
         }
 
@@ -97,6 +99,8 @@ namespace View
             get => currentUser; set => currentUser = value;
         }
         public static string Token { get => token; set => token = value; }
+
+
 
     }
 }

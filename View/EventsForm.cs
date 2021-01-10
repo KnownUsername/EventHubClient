@@ -90,7 +90,7 @@ namespace View
             #region URIConstruction
             HttpWebRequest request;
             StringBuilder uri;
-            string url = "https://localhost:44318/events/getFriendlyEvents";
+            string url = "https://localhost:44318/api/events/getFriendlyEvents";
 
             uri = new StringBuilder();
             uri.Append(url);
@@ -126,7 +126,7 @@ namespace View
             #region URIConstruction
             HttpWebRequest request;
             StringBuilder uri;
-            string url = "https://localhost:44318/events/getFriendlyEvents"; // change link accordly
+            string url = "https://localhost:44318/api/events/getFriendlyEvents"; // change link accordly
 
             uri = new StringBuilder();
             uri.Append(url);

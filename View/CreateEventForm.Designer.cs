@@ -42,7 +42,6 @@ namespace View
             this.local_textBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.confirm_button = new System.Windows.Forms.Button();
-            this.sport_textBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.teamMax_textBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -50,6 +49,7 @@ namespace View
             this.entryFee_label = new System.Windows.Forms.Label();
             this.eventStatus_Picker = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.sport_Picker = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // name_textBox
@@ -159,17 +159,10 @@ namespace View
             this.confirm_button.UseVisualStyleBackColor = true;
             this.confirm_button.Click += new System.EventHandler(this.confirm_button_Click);
             // 
-            // sport_textBox
-            // 
-            this.sport_textBox.Location = new System.Drawing.Point(677, 188);
-            this.sport_textBox.Name = "sport_textBox";
-            this.sport_textBox.Size = new System.Drawing.Size(100, 22);
-            this.sport_textBox.TabIndex = 15;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(619, 188);
+            this.label6.Location = new System.Drawing.Point(598, 187);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(42, 17);
             this.label6.TabIndex = 14;
@@ -227,19 +220,27 @@ namespace View
             this.label9.TabIndex = 21;
             this.label9.Text = "Status";
             // 
+            // sport_Picker
+            // 
+            this.sport_Picker.FormattingEnabled = true;
+            this.sport_Picker.Location = new System.Drawing.Point(656, 187);
+            this.sport_Picker.Name = "sport_Picker";
+            this.sport_Picker.Size = new System.Drawing.Size(121, 24);
+            this.sport_Picker.TabIndex = 22;
+            // 
             // CreateEventForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Tomato;
             this.ClientSize = new System.Drawing.Size(1008, 444);
+            this.Controls.Add(this.sport_Picker);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.eventStatus_Picker);
             this.Controls.Add(this.entryFee_textBox);
             this.Controls.Add(this.entryFee_label);
             this.Controls.Add(this.teamMax_textBox);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.sport_textBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.confirm_button);
             this.Controls.Add(this.local_textBox);
@@ -278,7 +279,6 @@ namespace View
         private System.Windows.Forms.TextBox local_textBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button confirm_button;
-        private System.Windows.Forms.TextBox sport_textBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox teamMax_textBox;
         private System.Windows.Forms.Label label7;
@@ -286,5 +286,6 @@ namespace View
         private System.Windows.Forms.Label entryFee_label;
         private System.Windows.Forms.ComboBox eventStatus_Picker;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox sport_Picker;
     }
 }
