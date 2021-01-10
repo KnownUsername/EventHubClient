@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entities.EntitiesService;
 using Newtonsoft.Json;
-using System.IdentityModel.Tokens.Jwt;
+using System.Runtime.Serialization.Json;
 
 namespace View
 {
@@ -68,8 +68,8 @@ namespace View
             // Espera o resultado
             HttpResponseMessage response =  await client.PostAsync(url, stringContent);  //Post
             //var response = client.PostAsync(url, stringContent);  //Post
-            
-            Session.Token = response.Content.ReadAsStringAsync().Result.ToString();
+
+            Session.Token = response.Content.ReadAsStringAsync().Result;
             Session.Token = Session.Token.Substring(1, Session.Token.Length - 2); //CHECK THIS
 
             //Verifica se o retorno é 200

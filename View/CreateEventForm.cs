@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entities.EntitiesService;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace View
 {
@@ -73,6 +74,9 @@ namespace View
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             // Associar o token ao header do objeto do tipo HttpClient
             //client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token);
+
+            // JwtSecurityToken token = JsonConvert.DeserializeObject<JwtSecurityToken>(Session.Token);
+
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session.Token);
 
             // Converte objeto para formato Json
