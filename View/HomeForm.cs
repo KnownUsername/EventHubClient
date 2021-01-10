@@ -23,17 +23,16 @@ namespace View
         {
             InitializeComponent();
 
+
         }
 
-        private void login_button_Click(object sender, EventArgs e)
+        private async void login_button_Click(object sender, EventArgs e)
         {
             Session.CurrentUser.Email = emailLog_textBox.Text.ToString();
-            Session.CurrentUser.Password = emailReg_textBox.Text.ToString();
+            Session.CurrentUser.Password = passwordLog_textBox.Text.ToString();
 
             // Send info to service
-            TryLogin(Session.CurrentUser);
-
-            
+            await TryLogin(Session.CurrentUser);           
 
         }
 
@@ -54,7 +53,7 @@ namespace View
         /// <returns></returns>
         private async Task<bool> TryLogin(User user)
         {
-            string url = "https://localhost:44318/api/user/login";
+            string url = "https://localhost:44318/api/users/login";
 
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(url);
@@ -63,11 +62,11 @@ namespace View
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             // Converte objeto para formato Json
-            string jsonString = JsonSerializer.Serialize(user);
+            string jsonString = JsonSerializer.Serialize<User>(user);
             var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");   //Header
 
             // Espera o resultado
-            HttpResponseMessage response = await client.PostAsync(url, stringContent);  //Post
+            HttpResponseMessage response =  client.PostAsync(url, stringContent).Result;  //Post
 
             //var response = client.PostAsync(url, stringContent);  //Post
 
@@ -90,7 +89,7 @@ namespace View
     /// </summary>
     public static class Session
     {
-        static User currentUser;
+        static User currentUser = new User();
         static string token;
 
         public static User CurrentUser

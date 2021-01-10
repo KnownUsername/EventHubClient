@@ -25,7 +25,7 @@ namespace View
         public GeneralForm()
         {
             InitializeComponent();
-
+            ChangePanelView(new HomeForm());
         }
 
         private void home_Click(object sender, EventArgs e)
