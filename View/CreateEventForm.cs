@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Text.Json;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entities.EntitiesService;
@@ -60,7 +60,7 @@ namespace View
             //createdEvent.Status =   Need to input possible values
 
 
-            CreateEventRequest(createdEvent); // request for service, to create event
+            Task<bool> t = CreateEventRequest(createdEvent); // request for service, to create event
 
         }
 
@@ -72,16 +72,17 @@ namespace View
             //Definir tipo de resultado: JSON
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             // Associar o token ao header do objeto do tipo HttpClient
-            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token);
-
+            //client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session.Token);
 
             // Converte objeto para formato Json
-            string jsonString = JsonSerializer.Serialize(createdEvent);
+            string jsonString = JsonConvert.SerializeObject(createdEvent);
             var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");   //Header
 
             // Espera o resultado
             HttpResponseMessage response = await client.PostAsync(url, stringContent);  //Post
 
+            
             string result = response.Content.ReadAsStringAsync().Result;
 
             // Verifica se o retorno é 200

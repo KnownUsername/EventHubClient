@@ -7,10 +7,10 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entities.EntitiesService;
+using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace View
@@ -62,15 +62,15 @@ namespace View
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             // Converte objeto para formato Json
-            string jsonString = JsonSerializer.Serialize<User>(user);
+            string jsonString = JsonConvert.SerializeObject(user);
             var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");   //Header
 
             // Espera o resultado
-            HttpResponseMessage response =  client.PostAsync(url, stringContent).Result;  //Post
-
+            HttpResponseMessage response =  await client.PostAsync(url, stringContent);  //Post
             //var response = client.PostAsync(url, stringContent);  //Post
-
-            Session.Token = response.Content.ReadAsStringAsync().Result;
+            
+            Session.Token = response.Content.ReadAsStringAsync().Result.ToString();
+            Session.Token = Session.Token.Substring(1, Session.Token.Length - 2); //CHECK THIS
 
             //Verifica se o retorno é 200
             if (response.IsSuccessStatusCode)
