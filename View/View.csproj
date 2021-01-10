@@ -95,10 +95,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventsForm.cs">
+    <Compile Include="Events\EventsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EventsForm.Designer.cs">
+    <Compile Include="Events\EventsForm.Designer.cs">
       <DependentUpon>EventsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HomeForm.cs">
@@ -113,21 +113,21 @@
     <Compile Include="GeneralForm.Designer.cs">
       <DependentUpon>GeneralForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateEventForm.cs">
+    <Compile Include="Events\CreateEventForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateEventForm.Designer.cs">
+    <Compile Include="Events\CreateEventForm.Designer.cs">
       <DependentUpon>CreateEventForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="JoinEventForm.cs">
+    <Compile Include="Events\JoinEventForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="JoinEventForm.Designer.cs">
+    <Compile Include="Events\JoinEventForm.Designer.cs">
       <DependentUpon>JoinEventForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="EventsForm.resx">
+    <EmbeddedResource Include="Events\EventsForm.resx">
       <DependentUpon>EventsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeForm.resx">
@@ -136,10 +136,10 @@
     <EmbeddedResource Include="GeneralForm.resx">
       <DependentUpon>GeneralForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateEventForm.resx">
+    <EmbeddedResource Include="Events\CreateEventForm.resx">
       <DependentUpon>CreateEventForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="JoinEventForm.resx">
+    <EmbeddedResource Include="Events\JoinEventForm.resx">
       <DependentUpon>JoinEventForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
