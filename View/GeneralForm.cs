@@ -57,6 +57,9 @@ namespace View
             teamsButton.ForeColor = Color.Green;
             teamsButton.BackColor = Color.LightGray;
 
+            TeamsForm teamsForm = new TeamsForm();
+            ChangePanelView(teamsForm);
+
         }
 
         private void accountButton_Click(object sender, EventArgs e)
@@ -65,6 +68,8 @@ namespace View
             accountButton.ForeColor = Color.IndianRed;
             accountButton.BackColor = Color.LightGray;
 
+            AccountForm accountForm = new AccountForm();
+            ChangePanelView(accountForm);
         }
 
 
