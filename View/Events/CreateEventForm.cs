@@ -36,17 +36,15 @@ namespace View
                 entryFee_textBox.Visible = true;
                 entryFee_label.Visible = true;
             }
-            InitializeInitialEventTypes();
-            sports = InitializeSports();
 
+            // Initializations of components
+            InitializeInitialEventTypes();
+            InitializeSports();
+
+            // Combo boxes' info fill
             eventStatus_Picker.DataSource = initialStatus;
             sport_Picker.DataSource = GetSportsName();
 
-        }
-
-        private void eventStatusPicker_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            eventStatus_Picker.DataSource = Enum.GetValues(typeof(EventStatus));
         }
 
         /// <summary>
@@ -76,6 +74,8 @@ namespace View
             CreateEventRequest(createdEvent); // request for service, to create event
 
         }
+
+
 
         /// <summary>
         /// Requests service to create an event
@@ -116,6 +116,7 @@ namespace View
 
         #region VALUES_ASSIGNMENTS
 
+        #region INITIALIZATIONS
         /// <summary>
         /// Initializes list of initial event status.
         /// </summary>
@@ -134,9 +135,8 @@ namespace View
         /// Initializes list of available sports
         /// </summary>
         /// <returns></returns>
-        List<Sport> InitializeSports()
+        void InitializeSports()
         {
-            List<Sport> sports = new List<Sport>();
 
             #region URIConstruction
             HttpWebRequest request;
@@ -167,12 +167,13 @@ namespace View
                 // Deserialization of received Json
                 sports = JsonConvert.DeserializeObject<List<Sport>>(content);
 
-                //sports = JsonSerializer.Deserialize<List<Sport>>(content);
-                return sports;
             }
             #endregion
         }
 
+        #endregion
+
+        #region INFO_PICKUP
         /// <summary>
         /// Captures all names from sports
         /// </summary>
@@ -208,6 +209,8 @@ namespace View
             return -1;
         }
 
+        #endregion
+       
         #endregion
     }
 }

@@ -30,8 +30,6 @@ namespace View
             
         }
 
-        #region EVENTS
-
         #region BUTTONS
         /// <summary>
         /// [ButtonClick] Friendly Events
@@ -83,6 +81,11 @@ namespace View
         #endregion
 
         #region METHODS
+
+        /// <summary>
+        /// Gives a list with all friendly events
+        /// </summary>
+        /// <returns></returns>
         private List<Event> GetFriendlyEvents()
         {
             List<Event> events = new List<Event>();
@@ -118,7 +121,13 @@ namespace View
                 return events;
             }
         }
+        
+        // NOTE: Try to join both GetEvents, using EventType, to switch link
 
+        /// <summary>
+        /// Gives a list with all competitive events
+        /// </summary>
+        /// <returns></returns>
         private List<Event> GetCompetitiveEvents()
         {
             List<Event> events = new List<Event>();
@@ -153,8 +162,9 @@ namespace View
                 events = JsonConvert.DeserializeObject<List<Event>>(content);
                 return events;
             }
-        }
-       
+        }    
+
+
 
         /// <summary>
         /// Redirects user to JoinEvent window, if he clicks on "Join" button
@@ -172,12 +182,16 @@ namespace View
                 GeneralForm auxForm = new GeneralForm();
                 auxForm = GetGeneralForm();
 
-                auxForm.ChangePanelView(joinEventForm);
+                auxForm.ChangePanelView(joinEventForm); // switch to window to join an event 
                 Close();
 
             }
         }
 
+        /// <summary>
+        /// Auxiliar method, to get the GeneralForm running
+        /// </summary>
+        /// <returns></returns>
         public GeneralForm GetGeneralForm()
         {
             GeneralForm desiredForm = new GeneralForm();
@@ -185,7 +199,7 @@ namespace View
             {
                 if (openForm.GetType().Equals(typeof(GeneralForm)))
                 {
-                    desiredForm = (GeneralForm)openForm;
+                    desiredForm = (GeneralForm)openForm; // Object atribution
                     break;
                 }
             }
@@ -193,7 +207,10 @@ namespace View
             return desiredForm;
         }
         
-
+        /// <summary>
+        /// Fills EventsDataGridView, with events' list 
+        /// </summary>
+        /// <param name="events"></param>
         private void EventsDataGridViewFiller(List<Event> events)
         {
 
@@ -213,8 +230,6 @@ namespace View
             }
 
         }
-
-        #endregion
 
         #endregion
 
