@@ -23,8 +23,8 @@ namespace View
             InitializeComponent();
             userInfo = new Dictionary<User, Account>();
             
-            GetAccountInfo(); // associates user info into dictionaty userInfo
-            SetTextBoxValues(); // displays user info on screen
+            //GetAccountInfo(); // associates user info into dictionaty userInfo
+            //SetTextBoxValues(); // displays user info on screen
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)

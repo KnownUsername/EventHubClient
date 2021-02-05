@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using Entities.EntitiesService;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http.Formatting;
+//using Newtonsoft.Json;
 
 namespace View
 {
@@ -54,12 +55,11 @@ namespace View
         /// <returns></returns>
         private async Task<bool> TryLogin(User user)
         {
-            string url = "https://localhost:44318/users/login";
-            string url2 = "https://localhost:44318/";
+            string url = "https://localhost:44318/api/";
 
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url2);
-            
+            client.BaseAddress = new Uri(url);
+
             //Definir tipo de resultado: JSON
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -68,8 +68,7 @@ namespace View
             var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");   //Header
 
             // Espera o resultado
-            HttpResponseMessage response =  client.PostAsync("users/login", stringContent).Result;  //Post
-            HttpResponseMessage response2 = await client.PostAsJsonAsync("users/login", user);
+            HttpResponseMessage response = client.PostAsync("users/login", stringContent).Result;  //Post
 
             //var response = client.PostAsync(url, stringContent);  //Post
             Session.Token = response.Content.ReadAsStringAsync().Result;
