@@ -10,10 +10,10 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Entities.EntitiesService;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http.Formatting;
 //using Newtonsoft.Json;
+using Model;
 
 namespace View
 {
