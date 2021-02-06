@@ -1,28 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Newtonsoft.Json;
+﻿/*
+ * Authors: João Rodrigues and Daniel Leonard
+ * Project: Practical Work, implementing services
+ * Current Solution: Client of services for sport events
+ * 
+ * [VIEW]
+ * CreateEventForm -> Page to create an event 
+ * 
+ * Subject: Integration of Informatic Systems
+ * Degree: Graduation on Engineering of Informatic Systems
+ * Lective Year: 2020/21
+ */
+
 using Model;
-using static Controller.UserController;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Text;
+using System.Windows.Forms;
+using static Controller.EventController;
 
 namespace View
 {
+    /// <summary>
+    /// Page to create an event 
+    /// </summary>
     public partial class CreateEventForm : Form
     {
         EventType eventType;
         List<EventStatus> initialStatus;
         List<Sport> sports;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="incomingEventType"></param>
         public CreateEventForm(EventType incomingEventType)
         {
             initialStatus = new List<EventStatus>();
@@ -56,6 +69,7 @@ namespace View
         {
             Event createdEvent = new Event();
 
+            /*     Data Retriev       */
             createdEvent.Name = name_textBox.Text;
             createdEvent.Description = description_textBox.Text;
             createdEvent.InitialDate = initialDate_Picker.Value;
@@ -70,49 +84,9 @@ namespace View
             else createdEvent.EntryFee = float.Parse(entryFee_textBox.Text);
             createdEvent.Status = (EventStatus)eventStatus_Picker.SelectedIndex;
 
-
-            CreateEventRequest(createdEvent); // request for service, to create event
+            bool responseStatus = CreateEventRequest(createdEvent); // request for service, to create event
 
         }
-
-
-
-        /// <summary>
-        /// Requests service to create an event
-        /// </summary>
-        /// <param name="createdEvent"></param>
-        /// <returns></returns>
-        async Task<bool> CreateEventRequest(Event createdEvent)
-        {
-            string url = "https://localhost:44318/api/events/createFriendlyEvent";
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-            //Definir tipo de resultado: JSON
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            // Associar o token ao header do objeto do tipo HttpClient
-            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token);
-
-
-            // Converte objeto para formato Json
-            //string jsonString = JsonSerializer.Serialize(createdEvent);
-            string jsonString = JsonConvert.SerializeObject(createdEvent);
-
-            var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");   //Header
-
-            // Espera o resultado
-            HttpResponseMessage response = await client.PostAsync(url, stringContent);  //Post
-
-            string result = response.Content.ReadAsStringAsync().Result;
-
-            // Verifica se o retorno é 200
-            if (response.IsSuccessStatusCode)
-            {
-                MessageBox.Show("Done!");
-                return true;
-            }
-            return false;
-        }
-
 
         #region VALUES_ASSIGNMENTS
 

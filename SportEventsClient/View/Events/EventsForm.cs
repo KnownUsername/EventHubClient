@@ -10,37 +10,27 @@
  */
 
 
+using Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IdentityModel.Tokens.Jwt;
-using Model;
+using static Controller.EventController;
 
 namespace View
 {
-    public enum EventType
-    {
-        Friendly,
-        Competitive
-    }
 
     public partial class EventsForm : Form
     {
         EventType eventType = new EventType();
         public EventsForm()
         {
-            InitializeComponent();
-            
+            InitializeComponent();           
         }
+
 
         #region BUTTONS
         /// <summary>
@@ -56,7 +46,7 @@ namespace View
             eventType = EventType.Friendly;
 
             List<Event> friendlyEvents = new List<Event>();
-            friendlyEvents = GetFriendlyEvents(); // reception of events
+            //friendlyEvents = GetFriendlyEvents(); // reception of events
             EventsDataGridViewFiller(friendlyEvents); // DataGrid fill with friendly events
             
             events_dataGridView.Visible = true;
@@ -90,115 +80,23 @@ namespace View
 
         }
 
-        #endregion
-
-        #region METHODS
-
         /// <summary>
-        /// Gives a list with all friendly events
-        /// </summary>
-        /// <returns></returns>
-        private List<Event> GetFriendlyEvents()
-        {
-            List<Event> events = new List<Event>();
-
-            #region URIConstruction
-            HttpWebRequest request;
-            StringBuilder uri;
-            string url = "https://localhost:44318/api/events/getFriendlyEvents";
-
-            uri = new StringBuilder();
-            uri.Append(url);
-            #endregion
-
-            // RequestPreparation
-            request = WebRequest.Create(uri.ToString()) as HttpWebRequest;
-
-            #region RequestSend
-            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)     //via GET
-            {
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    string message = String.Format("GET falhou. Recebido HTTP {0}", response.StatusCode);
-                    throw new ApplicationException(message);
-                }
-
-
-                // Storage of requested Json
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                string content = reader.ReadToEnd();
-
-                // Deserialization of received Json
-                events = JsonConvert.DeserializeObject<List<Event>>(content);
-                return events;
-            }
-        }
-        
-        // NOTE: Try to join both GetEvents, using EventType, to switch link
-
-        /// <summary>
-        /// Gives a list with all competitive events
-        /// </summary>
-        /// <returns></returns>
-        private List<Event> GetCompetitiveEvents()
-        {
-            List<Event> events = new List<Event>();
-
-            #region URIConstruction
-            HttpWebRequest request;
-            StringBuilder uri;
-            string url = "https://localhost:44318/api/events/getFriendlyEvents"; // change link accordly
-
-            uri = new StringBuilder();
-            uri.Append(url);
-            #endregion
-
-            // RequestPreparation
-            request = WebRequest.Create(uri.ToString()) as HttpWebRequest;
-
-            #region RequestSend
-            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)     //via GET
-            {
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    string message = String.Format("GET falhou. Recebido HTTP {0}", response.StatusCode);
-                    throw new ApplicationException(message);
-                }
-
-
-                // Storage of requested Json
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                string content = reader.ReadToEnd();
-
-                // Deserialization of received Json
-                events = JsonConvert.DeserializeObject<List<Event>>(content);
-                return events;
-            }
-        }    
-
-
-
-        /// <summary>
-        /// Redirects user to JoinEvent window, if he clicks on "Join" button
+        /// [ButtonClick] Add new Event
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Events_dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void addEvent_Button_Click(object sender, EventArgs e)
         {
+            GeneralForm auxForm = new GeneralForm();
+            auxForm = GetGeneralForm();
+            CreateEventForm createEventForm = new CreateEventForm(eventType);
 
-            if (e.ColumnIndex == events_dataGridView.Columns["enter_event"].Index) // Check if was clicked a button on table
-            {
-                
-                JoinEventForm joinEventForm = new JoinEventForm();
-                //Events_dataGridView.Visible = false;
-                GeneralForm auxForm = new GeneralForm();
-                auxForm = GetGeneralForm();
-
-                auxForm.ChangePanelView(joinEventForm); // switch to window to join an event 
-                Close();
-
-            }
+            auxForm.ChangePanelView(createEventForm);
         }
+
+        #endregion
+
+        #region METHODS
 
         /// <summary>
         /// Auxiliar method, to get the GeneralForm running
@@ -243,19 +141,39 @@ namespace View
 
         }
 
-        #endregion
 
-        #endregion
-
-        #endregion
-
-        private void addEvent_Button_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Redirects user to JoinEvent window, if he clicks on "Join" button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Events_dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            GeneralForm auxForm = new GeneralForm();
-            auxForm = GetGeneralForm();
-            CreateEventForm createEventForm = new CreateEventForm(eventType);
 
-            auxForm.ChangePanelView(createEventForm);
+            if (e.ColumnIndex == events_dataGridView.Columns["enter_event"].Index) // Check if was clicked a button on table
+            {
+
+                JoinEventForm joinEventForm = new JoinEventForm();
+                //Events_dataGridView.Visible = false;
+                GeneralForm auxForm = new GeneralForm();
+                auxForm = GetGeneralForm();
+
+                auxForm.ChangePanelView(joinEventForm); // switch to window to join an event 
+                Close();
+
+            }
         }
+
+        #endregion
+
+    }
+
+    /// <summary>
+    /// List of type of events
+    /// </summary>
+    public enum EventType
+    {
+        Friendly,
+        Competitive
     }
 }

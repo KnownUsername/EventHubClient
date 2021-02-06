@@ -1,16 +1,32 @@
-﻿using Model;
+﻿/*
+ * Authors: João Rodrigues and Daniel Leonard
+ * Project: Practical Work, implementing services
+ * Current Solution: Client of services for sport events
+ * 
+ * [CONTROLLER]
+ * UserController -> Controls User's methods, that interacts with View
+ * 
+ * Subject: Integration of Informatic Systems
+ * Degree: Graduation on Engineering of Informatic Systems
+ * Lective Year: 2020/21
+ */
+
+using Model;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Controller
 {
+
+    /// <summary>
+    /// Controls User's methods, that interacts with View
+    /// </summary>
     public static class UserController
     {
-        static string baseUrl = "https://localhost:44318/api/";
+        static string baseUrl = "https://localhost:44318/api/users/";
 
 
         /// <summary>
@@ -18,9 +34,9 @@ namespace Controller
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public static async Task<bool> Login(User user)
+        public static bool Login(User user)
         {
-            
+
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUrl);
 
@@ -32,7 +48,7 @@ namespace Controller
             var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");   //Header
 
             // Espera o resultado
-            HttpResponseMessage response = client.PostAsync("users/login", stringContent).Result;  //Post
+            HttpResponseMessage response = client.PostAsync("login", stringContent).Result;  //Post
 
             //var response = client.PostAsync(url, stringContent);  //Post
             Session.Token = response.Content.ReadAsStringAsync().Result;
@@ -45,7 +61,7 @@ namespace Controller
 
 
         /// <summary>
-        /// Current Session 
+        /// Current Session of an user
         /// </summary>
         public static class Session
         {

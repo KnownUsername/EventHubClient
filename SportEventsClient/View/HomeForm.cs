@@ -1,44 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿/*
+ * Authors: João Rodrigues and Daniel Leonard
+ * Project: Practical Work, implementing services
+ * Current Solution: Client of services for sport events
+ * 
+ * [VIEW]
+ * HomeForm -> Page to Login / Register an user
+ * 
+ * Subject: Integration of Informatic Systems
+ * Degree: Graduation on Engineering of Informatic Systems
+ * Lective Year: 2020/21
+ */
+
+using System;
 using System.Windows.Forms;
-using System.IdentityModel.Tokens.Jwt;
-using System.Net.Http.Formatting;
-//using Newtonsoft.Json;
-using Model;
 using static Controller.UserController;
 
 namespace View
 {
-
+    /// <summary>
+    /// Page to Login / Register an user
+    /// </summary>
     public partial class HomeForm : Form
-    {          
-             
+    {       
+        
+        // Constructor     
         public HomeForm()
         {
             InitializeComponent();
         }
 
-        private async void login_button_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// [ButtonClick] Login
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void login_button_Click(object sender, EventArgs e)
         {
             Session.CurrentUser.Email = emailLog_textBox.Text.ToString();
             Session.CurrentUser.Password = passwordLog_textBox.Text.ToString();
 
             // Send info to service
-            bool responseStatus = await Login(Session.CurrentUser);
+            bool responseStatus = Login(Session.CurrentUser);
+
+            // Check sucess of login
             if (responseStatus) MessageBox.Show("Login Sucessful!");
             else MessageBox.Show("Invalid login!");
 
         }
 
+        /// <summary>
+        /// [ButtonClick] Regist
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void join_button_Click(object sender, EventArgs e)
         {
             Session.CurrentUser.Name = name_textBox.Text.ToString();
@@ -48,8 +63,6 @@ namespace View
             // Send info to service 
             
         }
-
-
 
     }
 
