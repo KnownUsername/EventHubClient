@@ -95,6 +95,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\EventController.cs" />
+    <Compile Include="Controller\TeamController.cs" />
+    <Compile Include="Controller\UserController.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Event.cs" />
     <Compile Include="Model\Prize.cs" />
@@ -205,8 +208,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

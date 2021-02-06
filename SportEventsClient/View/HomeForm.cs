@@ -14,6 +14,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http.Formatting;
 //using Newtonsoft.Json;
 using Model;
+using static Controller.UserController;
 
 namespace View
 {
@@ -24,8 +25,6 @@ namespace View
         public HomeForm()
         {
             InitializeComponent();
-
-
         }
 
         private async void login_button_Click(object sender, EventArgs e)
@@ -34,7 +33,9 @@ namespace View
             Session.CurrentUser.Password = passwordLog_textBox.Text.ToString();
 
             // Send info to service
-            await TryLogin(Session.CurrentUser);           
+            bool responseStatus = await Login(Session.CurrentUser);
+            if (responseStatus) MessageBox.Show("Login Sucessful!");
+            else MessageBox.Show("Invalid login!");
 
         }
 
@@ -48,58 +49,8 @@ namespace View
             
         }
 
-        /// <summary>
-        /// Tries to login 
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        private async Task<bool> TryLogin(User user)
-        {
-            string url = "https://localhost:44318/api/";
-
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-
-            //Definir tipo de resultado: JSON
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            // Converte objeto para formato Json
-            string jsonString = JsonSerializer.Serialize(user);
-            var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");   //Header
-
-            // Espera o resultado
-            HttpResponseMessage response = client.PostAsync("users/login", stringContent).Result;  //Post
-
-            //var response = client.PostAsync(url, stringContent);  //Post
-            Session.Token = response.Content.ReadAsStringAsync().Result;
-
-            //Verifica se o retorno é 200
-            if (response.IsSuccessStatusCode)
-            {
-                MessageBox.Show("Done!");
-                return true;
-            }
-            else MessageBox.Show("False");
-            return false;
-        }
-
-    }
-
-    /// <summary>
-    /// Current Session 
-    /// </summary>
-    public static class Session
-    {
-        static User currentUser = new User();
-        static string token;
-
-        public static User CurrentUser
-        {
-            get => currentUser; set => currentUser = value;
-        }
-        public static string Token { get => token; set => token = value; }
-
 
 
     }
+
 }
