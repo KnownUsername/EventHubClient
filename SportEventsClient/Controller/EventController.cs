@@ -1,4 +1,5 @@
 ﻿using Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Text.Json;
+//using System.Text.Json;
 using static Controller.UserController;
 
 
@@ -43,7 +44,7 @@ namespace Controller
             int index = 0; // current index on loop / initialized as 0
 
             // Loop to search start and end of an Event on string listSerialized
-            foreach (char c in listSerialized) 
+            foreach (char c in listSerialized)
             {
                 // Starter character for an Event
                 if (c == '{') startingIndexes.Add(index);
@@ -54,7 +55,7 @@ namespace Controller
                 index++; // increment on index, to match current
             }
             if (startingIndexes.Count != endingIndexes.Count) return null;
-            
+
             List<string> eventsAsJsonString = new List<string>();
             int numberOfEvents = startingIndexes.Count; // number of events found
 
@@ -65,15 +66,15 @@ namespace Controller
 
                 subStringLength = endingIndexes[i] - startingIndexes[i] + 1;
                 // Use of stored indexes and substring add, directly to list
-                eventsAsJsonString.Add(listSerialized.Substring(startingIndexes[i],subStringLength));
+                eventsAsJsonString.Add(listSerialized.Substring(startingIndexes[i], subStringLength));
             }
 
             List<Event> events = new List<Event>();
 
             // Deserialize of each Event
-            foreach(string eventString in eventsAsJsonString)
+            foreach (string eventString in eventsAsJsonString)
             {
-                events.Add(JsonSerializer.Deserialize<Event>(eventString)); // Event deserialized, added to event list
+                events.Add(JsonConvert.DeserializeObject<Event>(eventString)); // Event deserialized, added to event list
             }
 
             //events = JsonSerializer.Deserialize<List<Event>>(listSerialized);
@@ -96,19 +97,19 @@ namespace Controller
 
             // Wait result
             //HttpResponseMessage response = client.PostAsync("createEvent", stringContent).Result;  //Post
-            HttpResponseMessage response = client.GetAsync("GetFriendlyEvents").Result;                
-            
+            HttpResponseMessage response = client.GetAsync("GetFriendlyEvents").Result;
+
             // Check if it's returned 200
             if (response.IsSuccessStatusCode)
             {
                 string listSerialized = response.Content.ReadAsStringAsync().Result;
 
-                string  listSerializedTrimmed = listSerialized.TrimStart('[');
+                string listSerializedTrimmed = listSerialized.TrimStart('[');
                 listSerializedTrimmed = listSerializedTrimmed.TrimEnd(']');
 
                 List<Event> events = new List<Event>();
 
-                events = JsonSerializer.Deserialize<List<Event>>(listSerialized);
+                events = JsonConvert.DeserializeObject<List<Event>>(listSerialized);
 
                 return events;
             }
@@ -119,42 +120,43 @@ namespace Controller
         /// <summary>
         /// Gives a list with all friendly events
         /// </summary>
-        //public static List<Event> GetFriendlyEvents()
-        //{
-        //    List<Event> events = new List<Event>();
+        public static List<Event> GetFriendlyEvents()
+        {
+            List<Event> events = new List<Event>();
 
-        //    #region URIConstruction
-        //    HttpWebRequest request;
-        //    StringBuilder uri;
-        //    string url = "https://localhost:44318/api/events/getFriendlyEvents";
+            #region URIConstruction
+            HttpWebRequest request;
+            StringBuilder uri;
+            string url = "https://localhost:44318/api/events/getFriendlyEvents";
 
-        //    uri = new StringBuilder();
-        //    uri.Append(url);
-        //    #endregion
+            uri = new StringBuilder();
+            uri.Append(url);
+            #endregion
 
-        //    // RequestPreparation
-        //    request = WebRequest.Create(uri.ToString()) as HttpWebRequest;
+            // RequestPreparation
+            request = WebRequest.Create(uri.ToString()) as HttpWebRequest;
 
-        //    #region RequestSend
-        //    using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)     //via GET
-        //    {
-        //        if (response.StatusCode != HttpStatusCode.OK)
-        //        {
-        //            string message = String.Format("GET falhou. Recebido HTTP {0}", response.StatusCode);
-        //            throw new ApplicationException(message);
-        //        }
+            #region RequestSend
+            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)     //via GET
+            {
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    string message = String.Format("GET falhou. Recebido HTTP {0}", response.StatusCode);
+                    throw new ApplicationException(message);
+                }
 
 
-        //        // Storage of requested Json
-        //        StreamReader reader = new StreamReader(response.GetResponseStream());
-        //        string content = reader.ReadToEnd();
+                // Storage of requested Json
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                string content = reader.ReadToEnd();
 
-        //        // Deserialization of received Json
-        //        events = JsonConvert.DeserializeObject<List<Event>>(content);
-        //        return events;
-        //    }
-        //    #endregion
-        //}
+                // Deserialization of received Json
+                events = JsonConvert.DeserializeObject<List<Event>>(content);
+                //events = JsonSerializer.Deserialize<List<Event>>(content);
+                return events;
+            }
+            #endregion
+        }
 
         // NOTE: Try to join both GetEvents, using EventType, to switch link
 
@@ -216,7 +218,7 @@ namespace Controller
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             // Convets object from JSON format
-            string jsonString = JsonSerializer.Serialize(createdEvent);
+            string jsonString = JsonConvert.SerializeObject(createdEvent);
             var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");   //Header
 
             // Wait result
