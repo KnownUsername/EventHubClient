@@ -46,6 +46,9 @@ namespace View
             eventType = EventType.Friendly;
 
             List<Event> friendlyEvents = new List<Event>();
+            //friendlyEvents = GetEvents(eventType);
+            friendlyEvents = GetEvents_Web();
+
             //friendlyEvents = GetFriendlyEvents(); // reception of events
             EventsDataGridViewFiller(friendlyEvents); // DataGrid fill with friendly events
             
@@ -166,14 +169,5 @@ namespace View
 
         #endregion
 
-    }
-
-    /// <summary>
-    /// List of type of events
-    /// </summary>
-    public enum EventType
-    {
-        Friendly,
-        Competitive
     }
 }

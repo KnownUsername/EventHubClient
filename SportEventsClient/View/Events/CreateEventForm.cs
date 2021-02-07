@@ -28,19 +28,23 @@ namespace View
     /// </summary>
     public partial class CreateEventForm : Form
     {
+        #region VARIABLES
         EventType eventType;
         List<EventStatus> initialStatus;
         List<Sport> sports;
+        #endregion
 
         /// <summary>
-        /// 
+        /// Creates page to create an event, based on event type
         /// </summary>
         /// <param name="incomingEventType"></param>
         public CreateEventForm(EventType incomingEventType)
         {
+            // Lists' initialization
             initialStatus = new List<EventStatus>();
             sports = new List<Sport>();
-            eventType = incomingEventType;
+
+            eventType = incomingEventType; // attribution of event type
             InitializeComponent();
 
             // Enable entryFee field 's vision
@@ -50,26 +54,26 @@ namespace View
                 entryFee_label.Visible = true;
             }
 
-            // Initializations of components
-            InitializeInitialEventTypes();
-            InitializeSports();
+            /*      Initializations of components  */
+            InitializeInitialEventTypes(); // for possible types of event
+            InitializeSports(); // for available sports
 
             // Combo boxes' info fill
-            eventStatus_Picker.DataSource = initialStatus;
-            sport_Picker.DataSource = GetSportsName();
+            eventStatus_Picker.DataSource = initialStatus; // EventType's options
+            sport_Picker.DataSource = GetSportsName(); // Sports' options
 
         }
 
         /// <summary>
-        /// Where is sent the request to create an event
-        /// </summary>
+        /// [ButtonClick] Where is sent the request to create an event
+        /// </summary> 
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void confirm_button_Click(object sender, EventArgs e)
         {
             Event createdEvent = new Event();
 
-            /*     Data Retriev       */
+            /*     Collection of Data     */            // Lacks Control of possible input, influencing Parses
             createdEvent.Name = name_textBox.Text;
             createdEvent.Description = description_textBox.Text;
             createdEvent.InitialDate = initialDate_Picker.Value;
@@ -77,11 +81,11 @@ namespace View
             createdEvent.Slots = Int32.Parse(slots_textBox.Text);
             createdEvent.Local = local_textBox.Text;
             createdEvent.SportId = GetSportId(sport_Picker.Text);
-
             createdEvent.TeamMax = Int32.Parse(teamMax_textBox.Text);
 
-            if (eventType == EventType.Friendly) createdEvent.EntryFee = null;
-            else createdEvent.EntryFee = float.Parse(entryFee_textBox.Text);
+            if (eventType == EventType.Friendly) createdEvent.EntryFee = null; // Friendly events has null value for entry fee
+            else createdEvent.EntryFee = float.Parse(entryFee_textBox.Text); // Competitive events got entry fee chosen by user
+            
             createdEvent.Status = (EventStatus)eventStatus_Picker.SelectedIndex;
 
             bool responseStatus = CreateEventRequest(createdEvent); // request for service, to create event

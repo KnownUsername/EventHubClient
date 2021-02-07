@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Newtonsoft.Json;
+using System;
 using System.ServiceModel;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace Model
 {
@@ -32,7 +29,6 @@ namespace Model
         cancelled
     }
 
-    [ServiceContractAttribute]
     public class Event
     {
         int id;
@@ -48,12 +44,6 @@ namespace Model
         int teamMax;
         int userId;
 
-
-        /*
-        Data Structures 
-        Dictionary<Team, DateTime> teams;
-        List<Prize> prizeChart;
-        */
 
         #region PROPERTIES
         [JsonProperty("id")]
@@ -89,17 +79,14 @@ namespace Model
         public int TeamMax { get => teamMax; set => teamMax = value; }
 
         public int UserId { get => userId; set => userId = value; }
-        /*
-        public Dictionary<Team, DateTime> Teams { get => teams; set => teams = value; }
-        public List<Prize> PrizeChart { get => prizeChart; set => prizeChart = value; }
-        */
+
         #endregion
         public Event()
         {
 
         }
 
-        [OperationContractAttribute]
+
         public bool ValidateObject()
         {
             if (1 == 1) return true;
@@ -110,6 +97,15 @@ namespace Model
             */
         }
 
-
     }
+
+    /// <summary>
+    /// List of type of events
+    /// </summary>
+    public enum EventType
+    {
+        Friendly,
+        Competitive
+    }
+
 }
