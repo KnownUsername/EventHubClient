@@ -52,6 +52,7 @@ namespace Controller
 
             Session.Token = response.Content.ReadAsStringAsync().Result;
 
+
             // Check if it's returned 200
             if (response.IsSuccessStatusCode) return true;
 

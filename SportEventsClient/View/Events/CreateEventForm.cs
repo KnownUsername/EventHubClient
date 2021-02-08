@@ -89,7 +89,8 @@ namespace View
             createdEvent.Status = (EventStatus)eventStatus_Picker.SelectedIndex;
 
             bool responseStatus = CreateEventRequest(createdEvent); // request for service, to create event
-
+            if (responseStatus) MessageBox.Show("Event created!");
+            else MessageBox.Show("Fail on creating event! :(");
         }
 
         #region VALUES_ASSIGNMENTS
@@ -119,7 +120,7 @@ namespace View
             #region URIConstruction
             HttpWebRequest request;
             StringBuilder uri;
-            string url = "https://localhost:44318/api/sports/getSports"; // change link accordly
+            string url = "https://localhost:44318/api/sports/GetSports"; // change link accordly
 
             uri = new StringBuilder();
             uri.Append(url);

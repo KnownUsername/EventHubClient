@@ -7,7 +7,6 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-//using System.Text.Json;
 using static Controller.UserController;
 
 
@@ -22,143 +21,46 @@ namespace Controller
     public static class EventController
     {
 
-        static string baseUrl = "https://localhost:44318/api/events/";
+        static string baseUrl = "https://localhost:44318/api/events/"; // base URL for Events'method
 
-
-        #region GET_EVENTS_LISTS
 
         /// <summary>
-        /// GET to obtain list of events, using WebClient/ Yet in test and without using EventType
-        /// </summary>
-        /// <returns></returns>
-        public static List<Event> GetEvents_Web()
-        {
-            string url = baseUrl + "GetFriendlyEvents"; // full url - composed with baseUrl + specific service to use
-            WebClient client = new WebClient();
-            string listSerialized = client.DownloadString(url); // receives information requested, from the service
-
-            // Lists of start and end indexes for each event
-            List<int> startingIndexes = new List<int>();
-            List<int> endingIndexes = new List<int>();
-
-            int index = 0; // current index on loop / initialized as 0
-
-            // Loop to search start and end of an Event on string listSerialized
-            foreach (char c in listSerialized)
-            {
-                // Starter character for an Event
-                if (c == '{') startingIndexes.Add(index);
-
-                // Ending character for an Event
-                if (c == '}') endingIndexes.Add(index);
-
-                index++; // increment on index, to match current
-            }
-            if (startingIndexes.Count != endingIndexes.Count) return null;
-
-            List<string> eventsAsJsonString = new List<string>();
-            int numberOfEvents = startingIndexes.Count; // number of events found
-
-            int subStringLength;
-            // Create Substrings and store on eventsAsJsonString
-            for (int i = 0; i < numberOfEvents; i++)
-            {
-
-                subStringLength = endingIndexes[i] - startingIndexes[i] + 1;
-                // Use of stored indexes and substring add, directly to list
-                eventsAsJsonString.Add(listSerialized.Substring(startingIndexes[i], subStringLength));
-            }
-
-            List<Event> events = new List<Event>();
-
-            // Deserialize of each Event
-            foreach (string eventString in eventsAsJsonString)
-            {
-                events.Add(JsonConvert.DeserializeObject<Event>(eventString)); // Event deserialized, added to event list
-            }
-
-            //events = JsonSerializer.Deserialize<List<Event>>(listSerialized);
-
-            return events;
-        }
-
-        /// <summary>
-        /// GET Testing to get list of events, based on eventType, using HttpClient
+        /// GET -> list of events, based on eventType, using HttpClient
         /// </summary>
         /// <param name="eventType"></param>
         /// <returns></returns>
         public static List<Event> GetEvents(EventType eventType)
         {
+            string method;
+
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUrl);
 
             // Define result type: JSON 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+            // Using token authorization
+            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token);
+
+            // Method pick, based on type of event
+            if (eventType == EventType.Friendly) method = "GetFriendlyEvents";
+            else method = "GetCompEvents";
+
             // Wait result
-            //HttpResponseMessage response = client.PostAsync("createEvent", stringContent).Result;  //Post
-            HttpResponseMessage response = client.GetAsync("GetFriendlyEvents").Result;
+            HttpResponseMessage response = client.GetAsync(method).Result;
 
             // Check if it's returned 200
             if (response.IsSuccessStatusCode)
             {
-                string listSerialized = response.Content.ReadAsStringAsync().Result;
-
-                string listSerializedTrimmed = listSerialized.TrimStart('[');
-                listSerializedTrimmed = listSerializedTrimmed.TrimEnd(']');
-
+                string listSerialized = response.Content.ReadAsStringAsync().Result; // allocate result of request, on string
                 List<Event> events = new List<Event>();
-
-                events = JsonConvert.DeserializeObject<List<Event>>(listSerialized);
-
+                events = JsonConvert.DeserializeObject<List<Event>>(listSerialized); // Converting string's result to Event type 
                 return events;
             }
 
-            return null;
+            return null; // Case insucess on request
         }
-
-        /// <summary>
-        /// Gives a list with all friendly events
-        /// </summary>
-        public static List<Event> GetFriendlyEvents()
-        {
-            List<Event> events = new List<Event>();
-
-            #region URIConstruction
-            HttpWebRequest request;
-            StringBuilder uri;
-            string url = "https://localhost:44318/api/events/getFriendlyEvents";
-
-            uri = new StringBuilder();
-            uri.Append(url);
-            #endregion
-
-            // RequestPreparation
-            request = WebRequest.Create(uri.ToString()) as HttpWebRequest;
-
-            #region RequestSend
-            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)     //via GET
-            {
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    string message = String.Format("GET falhou. Recebido HTTP {0}", response.StatusCode);
-                    throw new ApplicationException(message);
-                }
-
-
-                // Storage of requested Json
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                string content = reader.ReadToEnd();
-
-                // Deserialization of received Json
-                events = JsonConvert.DeserializeObject<List<Event>>(content);
-                //events = JsonSerializer.Deserialize<List<Event>>(content);
-                return events;
-            }
-            #endregion
-        }
-
-        // NOTE: Try to join both GetEvents, using EventType, to switch link
+         
 
         /// <summary>
         /// Gives a list with all competitive events
@@ -201,7 +103,7 @@ namespace Controller
             #endregion
         }
 
-        #endregion
+
 
         /// <summary>
         /// Requests service to create an event

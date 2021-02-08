@@ -46,8 +46,7 @@ namespace View
             eventType = EventType.Friendly;
 
             List<Event> friendlyEvents = new List<Event>();
-            //friendlyEvents = GetEvents(eventType);
-            friendlyEvents = GetEvents_Web();
+            friendlyEvents = GetEvents(eventType);
 
             //friendlyEvents = GetFriendlyEvents(); // reception of events
             EventsDataGridViewFiller(friendlyEvents); // DataGrid fill with friendly events
@@ -72,7 +71,7 @@ namespace View
             eventType = EventType.Competitive;
 
             List<Event> competitiveEvents = new List<Event>();
-            competitiveEvents = GetCompetitiveEvents(); // reception of events
+            competitiveEvents = GetEvents(eventType); // reception of events
             EventsDataGridViewFiller(competitiveEvents); // DataGrid fill with friendly events
             events_dataGridView.Visible = true;
 
