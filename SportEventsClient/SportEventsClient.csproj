@@ -101,6 +101,7 @@
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Event.cs" />
     <Compile Include="Model\Prize.cs" />
+    <Compile Include="Model\Session.cs" />
     <Compile Include="Model\Sport.cs" />
     <Compile Include="Model\Team.cs" />
     <Compile Include="Model\User.cs" />

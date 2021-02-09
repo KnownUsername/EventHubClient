@@ -105,7 +105,6 @@ namespace View
             this.email_textBox.ReadOnly = true;
             this.email_textBox.Size = new System.Drawing.Size(100, 22);
             this.email_textBox.TabIndex = 6;
-            this.email_textBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // address_textBox
             // 

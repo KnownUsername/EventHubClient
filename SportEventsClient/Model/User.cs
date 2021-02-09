@@ -1,10 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿/*
+ * Authors: João Rodrigues and Daniel Leonard
+ * Project: Practical Work, implementing services
+ * Current Solution: Client of services for sport events
+ * 
+ * [MODEL]
+ * User - Defines a user
+ * 
+ * Subject: Integration of Informatic Systems
+ * Degree: Graduation on Engineering of Informatic Systems
+ * Lective Year: 2020/21
+ */
 
 namespace Model
 {
+    /// <summary>
+    /// Defines a user
+    /// </summary>
     public class User
     {
         int id, accountId;
@@ -21,29 +32,13 @@ namespace Model
         public int AccountId { get => accountId; set => accountId = value; }
         #endregion
 
-
+        /// <summary>
+        /// Class constructor
+        /// </summary>
         public User()
         {
 
         }
-
-        public User(string name, string email, string password)
-        {
-        }
-
-        #region FUNCTIONS
-        public bool CheckCredentials()
-        {
-            return true;
-        }
-
-        public bool ValidateObject()
-        {
-            if (1 == 1) return true;
-            //return false;
-        }
-        #endregion
-
 
     }
 }

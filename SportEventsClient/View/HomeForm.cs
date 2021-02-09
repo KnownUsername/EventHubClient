@@ -14,6 +14,7 @@
 using System;
 using System.Windows.Forms;
 using static Controller.UserController;
+using Model;
 
 namespace View
 {
@@ -23,7 +24,7 @@ namespace View
     public partial class HomeForm : Form
     {       
         
-        // Constructor     
+        // Form constructor     
         public HomeForm()
         {
             InitializeComponent();
@@ -56,6 +57,7 @@ namespace View
         /// <param name="e"></param>
         private void join_button_Click(object sender, EventArgs e)
         {
+            // Store inputed information 
             Session.CurrentUser.Name = name_textBox.Text.ToString();
             Session.CurrentUser.Email = emailReg_textBox.Text.ToString();
             Session.CurrentUser.Password = passwordReg_textBox.Text.ToString();

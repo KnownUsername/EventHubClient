@@ -1,10 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿/*
+ * Authors: João Rodrigues and Daniel Leonard
+ * Project: Practical Work, implementing services
+ * Current Solution: Client of services for sport events
+ * 
+ * [MODEL]
+ * Team - Defines a team of an event
+ * 
+ * Subject: Integration of Informatic Systems
+ * Degree: Graduation on Engineering of Informatic Systems
+ * Lective Year: 2020/21
+ */
 
 namespace Model
 {
+    /// <summary>
+    /// Enumerates leaderboards' places
+    /// </summary>
     public enum Place
     {
         first = 1,
@@ -18,6 +29,9 @@ namespace Model
         na = 0
     }
 
+    /// <summary>
+    /// Defines a team of an event
+    /// </summary>
     public class Team
     {
         int id;

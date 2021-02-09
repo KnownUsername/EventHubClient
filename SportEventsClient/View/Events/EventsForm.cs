@@ -3,29 +3,33 @@
  * Project: Practical Work, implementing services
  * Current Solution: Client of services for sport events
  * 
+ * [VIEW]
+ * EventsForm -> Principal page of events, controls:
+ *                -> Acess to a certain type of event
+ *                -> View of events, based on type of event
  * 
  * Subject: Integration of Informatic Systems
- * Degree: Graduation on Engeneer of Informatic Systems
+ * Degree: Graduation on Engineering of Informatic Systems
  * Lective Year: 2020/21
  */
 
 
 using Model;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Text;
 using System.Windows.Forms;
 using static Controller.EventController;
 
 namespace View
 {
-
+    /// <summary>
+    /// Principal page of events
+    /// </summary>
     public partial class EventsForm : Form
     {
         EventType eventType = new EventType();
+        
+        // Form constructor
         public EventsForm()
         {
             InitializeComponent();           
@@ -40,22 +44,30 @@ namespace View
         /// <param name="e"></param>
         private void friendliesButton_Click(object sender, EventArgs e)
         {
+            #region VISUAL
+            // Hide buttons to pick event type
             competitivesButton.Visible = false;
             friendliesButton.Visible = false;
+            #endregion
 
-            eventType = EventType.Friendly;
+            eventType = EventType.Friendly; // assign event type to friendly
 
             List<Event> friendlyEvents = new List<Event>();
-            friendlyEvents = GetEvents(eventType);
+            friendlyEvents = GetEvents(eventType); // colect friendly events, from external service
 
-            //friendlyEvents = GetFriendlyEvents(); // reception of events
             EventsDataGridViewFiller(friendlyEvents); // DataGrid fill with friendly events
-            
-            events_dataGridView.Visible = true;
-            addEvent_Label.Visible = true;
-            addEvent_Button.Visible = true;
 
-            events_dataGridView.CellClick += Events_dataGridView_CellClick;
+            #region VISUAL
+            /*       Makes needed components visible      */
+            events_dataGridView.Visible = true; // table 
+
+            /*  Add Event Section    */
+            addEvent_Label.Visible = true;  // button's subtitle
+            addEvent_Button.Visible = true; // button
+            #endregion
+
+            events_dataGridView.CellClick += Events_dataGridView_CellClick; // case a cell is clicked  
+                                                                            // takes action when clicked Join's button
         }
 
         /// <summary>
@@ -65,21 +77,31 @@ namespace View
         /// <param name="e"></param>
         private void competitivesButton_Click(object sender, EventArgs e)
         {
+            #region VISUAL
+            // Hide buttons to pick event type
             competitivesButton.Visible = false;
             friendliesButton.Visible = false;
+            #endregion
 
             eventType = EventType.Competitive;
 
             List<Event> competitiveEvents = new List<Event>();
             competitiveEvents = GetEvents(eventType); // reception of events
-            EventsDataGridViewFiller(competitiveEvents); // DataGrid fill with friendly events
+            EventsDataGridViewFiller(competitiveEvents); // DataGrid fill with competitive events
+
+            #region VISUAL
+            /*       Makes needed components visible      */
             events_dataGridView.Visible = true;
 
             /*  Add Event Section    */
-            addEvent_Label.Text = "Add Competitive Event";
-            addEvent_Label.Visible = true;
-            addEvent_Button.Visible = true;
+            addEvent_Label.Text = "Add Competitive Event"; // Change label's text
+            addEvent_Label.Visible = true; // button's subtitle
+            addEvent_Button.Visible = true; // button
+            #endregion
 
+            // Lacks implementation to competitive
+            events_dataGridView.CellClick += Events_dataGridView_CellClick; // case a cell is clicked  
+                                                                            // takes action when clicked Join's button
         }
 
         /// <summary>
@@ -101,15 +123,17 @@ namespace View
         #region METHODS
 
         /// <summary>
-        /// Auxiliar method, to get the GeneralForm running
+        /// Auxiliar method, to get the current GeneralForm running
         /// </summary>
         /// <returns></returns>
         public GeneralForm GetGeneralForm()
         {
             GeneralForm desiredForm = new GeneralForm();
+
+            // Cicle through all forms open
            foreach(Form openForm in Application.OpenForms)
             {
-                if (openForm.GetType().Equals(typeof(GeneralForm)))
+                if (openForm.GetType().Equals(typeof(GeneralForm))) // Check if GeneralForm type
                 {
                     desiredForm = (GeneralForm)openForm; // Object atribution
                     break;
@@ -161,7 +185,7 @@ namespace View
                 auxForm = GetGeneralForm();
 
                 auxForm.ChangePanelView(joinEventForm); // switch to window to join an event 
-                Close();
+                Close(); // Close current form
 
             }
         }

@@ -1,6 +1,18 @@
-﻿using Newtonsoft.Json;
+﻿/*
+ * Authors: João Rodrigues and Daniel Leonard
+ * Project: Practical Work, implementing services
+ * Current Solution: Client of services for sport events
+ * 
+ * [MODEL]
+ * Event -> Class to define an event
+ * 
+ * Subject: Integration of Informatic Systems
+ * Degree: Graduation on Engineering of Informatic Systems
+ * Lective Year: 2020/21
+ */
+
+using Newtonsoft.Json;
 using System;
-using System.ServiceModel;
 
 namespace Model
 {
@@ -20,6 +32,7 @@ namespace Model
         public Prize Prize { get; set; }
     }
 
+    // Possible status for an event
     public enum EventStatus
     {
         open,
@@ -29,6 +42,9 @@ namespace Model
         cancelled
     }
 
+    /// <summary>
+    /// Class to define an event
+    /// </summary>
     public class Event
     {
         int id;
@@ -81,20 +97,13 @@ namespace Model
         public int UserId { get => userId; set => userId = value; }
 
         #endregion
+        
+        /// <summary>
+        /// Class constructor
+        /// </summary>
         public Event()
         {
 
-        }
-
-
-        public bool ValidateObject()
-        {
-            if (1 == 1) return true;
-            /*
-             * return false;
-             * teams = new Dictionary<Team, DateTime>(); 
-            prizeChart = new List<Prize>();
-            */
         }
 
     }

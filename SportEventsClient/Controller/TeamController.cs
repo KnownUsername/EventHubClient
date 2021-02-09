@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+ * Authors: João Rodrigues and Daniel Leonard
+ * Project: Practical Work, implementing services
+ * Current Solution: Client of services for sport events
+ * 
+ * [CONTROLLER]
+ * TeamController -> Controls Teams'methods, that interacts with View
+ * 
+ * Subject: Integration of Informatic Systems
+ * Degree: Graduation on Engineering of Informatic Systems
+ * Lective Year: 2020/21
+ */
 
 namespace Controller
 {
-    class TeamController
+    /// <summary>
+    /// Controls Teams'methods, that interacts with View
+    /// </summary>
+    public class TeamController
     {
 
     }

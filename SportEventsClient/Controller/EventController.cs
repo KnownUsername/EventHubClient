@@ -1,23 +1,30 @@
-﻿using Model;
+﻿/*
+ * Authors: João Rodrigues and Daniel Leonard
+ * Project: Practical Work, implementing services
+ * Current Solution: Client of services for sport events
+ * 
+ * [Controller]
+ * EventController -> Controls Sport Events' methods, that interacts with View
+ * 
+ * Subject: Integration of Informatic Systems
+ * Degree: Graduation on Engineering of Informatic Systems
+ * Lective Year: 2020/21
+ */
+
+using Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using static Controller.UserController;
 
 
 namespace Controller
 {
     /// <summary>
-    /// Controls Sport Events' methods
+    /// Controls Sport Events' methods, that interacts with View
     /// </summary>
-    /// <obs>
-    /// Ponderate use other way to implement function (like in UserController)
-    /// </obs>
     public static class EventController
     {
 
@@ -63,50 +70,7 @@ namespace Controller
          
 
         /// <summary>
-        /// Gives a list with all competitive events
-        /// </summary>
-        /// <returns></returns>
-        public static List<Event> GetCompetitiveEvents()
-        {
-            List<Event> events = new List<Event>();
-
-            #region URIConstruction
-            HttpWebRequest request;
-            StringBuilder uri;
-            string url = "https://localhost:44318/api/events/getFriendlyEvents"; // change link accordly
-
-            uri = new StringBuilder();
-            uri.Append(url);
-            #endregion
-
-            // RequestPreparation
-            request = WebRequest.Create(uri.ToString()) as HttpWebRequest;
-
-            #region RequestSend
-            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)     //via GET
-            {
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    string message = String.Format("GET falhou. Recebido HTTP {0}", response.StatusCode);
-                    throw new ApplicationException(message);
-                }
-
-
-                // Storage of requested Json
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                string content = reader.ReadToEnd();
-
-                // Deserialization of received Json
-                //events = JsonConvert.DeserializeObject<List<Event>>(content);
-                return events;
-            }
-            #endregion
-        }
-
-
-
-        /// <summary>
-        /// Requests service to create an event
+        /// POST -> Requests service to create an event
         /// </summary>
         /// <param name="createdEvent"></param>
         /// <returns></returns>
@@ -121,10 +85,10 @@ namespace Controller
 
             // Convets object from JSON format
             string jsonString = JsonConvert.SerializeObject(createdEvent);
-            var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");   //Header
+            var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");   // Header
 
             // Wait result
-            HttpResponseMessage response = client.PostAsync("createEvent", stringContent).Result;  //Post
+            HttpResponseMessage response = client.PostAsync("createEvent", stringContent).Result;  // Post
 
             Session.Token = response.Content.ReadAsStringAsync().Result;
 
@@ -133,8 +97,6 @@ namespace Controller
 
             return false;
         }
-
-
 
     }
 }

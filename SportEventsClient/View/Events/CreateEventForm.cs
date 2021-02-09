@@ -73,7 +73,7 @@ namespace View
         {
             Event createdEvent = new Event();
 
-            /*     Collection of Data     */            // Lacks Control of possible input, influencing Parses
+            /*     Collection of Data     */            // Lacks control of possible inputs, influencing Parses
             createdEvent.Name = name_textBox.Text;
             createdEvent.Description = description_textBox.Text;
             createdEvent.InitialDate = initialDate_Picker.Value;
@@ -89,6 +89,7 @@ namespace View
             createdEvent.Status = (EventStatus)eventStatus_Picker.SelectedIndex;
 
             bool responseStatus = CreateEventRequest(createdEvent); // request for service, to create event
+            // Check if request suceeded
             if (responseStatus) MessageBox.Show("Event created!");
             else MessageBox.Show("Fail on creating event! :(");
         }
@@ -158,14 +159,14 @@ namespace View
         /// </summary>
         /// <param name="sports"></param>
         /// <returns></returns>
-        List<string> GetSportsName()
+        private List<string> GetSportsName()
         {
             List<string> sportsNames = new List<string>();
 
-
+            // Cicle through sports
             foreach (Sport sport in sports)
             {
-                sportsNames.Add(sport.Name);
+                sportsNames.Add(sport.Name); // Add sports'name to the list
             }
 
             return sportsNames;
@@ -176,16 +177,17 @@ namespace View
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        int GetSportId(string name)
+        private int GetSportId(string name)
         {
+            // Cicle through all sports
             foreach (Sport sport in sports)
             {
-                if (sport.Name == name)
+                if (sport.Name == name) // find match sport's name
                 {
                     return sport.Id;
                 }
             }
-            return -1;
+            return -1; // case sport not found
         }
 
         #endregion

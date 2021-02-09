@@ -1,20 +1,31 @@
-﻿using System;
+﻿/*
+ * Authors: João Rodrigues and Daniel Leonard
+ * Project: Practical Work, implementing services
+ * Current Solution: Client of services for sport events
+ * 
+ * [VIEW]
+ * AccountForm -> Page to check and edit account informations
+ * 
+ * Subject: Integration of Informatic Systems
+ * Degree: Graduation on Engineering of Informatic Systems
+ * Lective Year: 2020/21
+ */
+
+using Model;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Newtonsoft.Json;
-using Model;
-using static Controller.UserController;
 
 namespace View
 {
+    /// <summary>
+    /// Page to check and edit account informations
+    /// </summary>
     public partial class AccountForm : Form
     {
         Dictionary<User, Account> userInfo;
@@ -26,11 +37,6 @@ namespace View
             
             //GetAccountInfo(); // associates user info into dictionaty userInfo
             //SetTextBoxValues(); // displays user info on screen
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         /// <summary>

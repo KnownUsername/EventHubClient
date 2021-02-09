@@ -50,8 +50,8 @@ namespace Controller
             // Wait result
             HttpResponseMessage response = client.PostAsync("login", stringContent).Result;  //Post
 
-            Session.Token = response.Content.ReadAsStringAsync().Result;
-
+            string result = response.Content.ReadAsStringAsync().Result;
+            Session.Token = result.Substring(1, result.Length - 2);
 
             // Check if it's returned 200
             if (response.IsSuccessStatusCode) return true;
@@ -59,21 +59,5 @@ namespace Controller
             return false;
         }
 
-
-        /// <summary>
-        /// Current Session of an user
-        /// </summary>
-        public static class Session
-        {
-            static User currentUser = new User();
-            static string token;
-
-            public static User CurrentUser
-            {
-                get => currentUser; set => currentUser = value;
-            }
-            public static string Token { get => token; set => token = value; }
-
-        }
     }
 }
