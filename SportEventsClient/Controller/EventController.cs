@@ -46,9 +46,6 @@ namespace Controller
             // Define result type: JSON 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            // Using token authorization
-            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token);
-
             // Method pick, based on type of event
             if (eventType == EventType.Friendly) method = "GetFriendlyEvents";
             else method = "GetCompEvents";
@@ -82,6 +79,9 @@ namespace Controller
 
             // Define result type: JSON 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            // Using token authorization
+            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token);
 
             // Convets object from JSON format
             string jsonString = JsonConvert.SerializeObject(createdEvent);
