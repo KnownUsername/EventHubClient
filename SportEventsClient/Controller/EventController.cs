@@ -71,7 +71,7 @@ namespace Controller
         /// </summary>
         /// <param name="createdEvent"></param>
         /// <returns></returns>
-        public static bool CreateEventRequest(Event createdEvent)
+        public static bool CreateEvent(Event createdEvent)
         {
 
             HttpClient client = new HttpClient();
@@ -98,5 +98,19 @@ namespace Controller
             return false;
         }
 
+
+        /// <summary>
+        /// Check if user is already registered in event, using it's email
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
+        public static bool IsRegisteredInEvent(string email, int eventId)
+        {
+
+
+
+            return false;
+        }
     }
 }

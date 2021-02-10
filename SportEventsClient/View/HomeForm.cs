@@ -63,7 +63,13 @@ namespace View
             Session.CurrentUser.Password = passwordReg_textBox.Text.ToString();
 
             // Send info to service 
-            
+
+            bool responseStatus = Regist(Session.CurrentUser);
+
+            // Check sucess of login
+            if (responseStatus) MessageBox.Show("Registered Sucessful! : |)");
+            else MessageBox.Show("Invalid regist! =( ");
+
         }
 
     }

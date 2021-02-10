@@ -82,13 +82,14 @@ namespace View
             createdEvent.Local = local_textBox.Text;
             createdEvent.SportId = GetSportId(sport_Picker.Text);
             createdEvent.TeamMax = Int32.Parse(teamMax_textBox.Text);
+            createdEvent.UserId = Session.CurrentUser.Id;
 
             if (eventType == EventType.Friendly) createdEvent.EntryFee = null; // Friendly events has null value for entry fee
             else createdEvent.EntryFee = float.Parse(entryFee_textBox.Text); // Competitive events got entry fee chosen by user
             
             createdEvent.Status = (EventStatus)eventStatus_Picker.SelectedIndex;
 
-            bool responseStatus = CreateEventRequest(createdEvent); // request for service, to create event
+            bool responseStatus = CreateEvent(createdEvent); // request for service, to create event
             // Check if request suceeded
             if (responseStatus) MessageBox.Show("Event created!");
             else MessageBox.Show("Fail on creating event! :(");

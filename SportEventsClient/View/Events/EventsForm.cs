@@ -178,9 +178,16 @@ namespace View
 
             if (e.ColumnIndex == events_dataGridView.Columns["enter_event"].Index) // Check if was clicked a button on table
             {
+                /*      Getting event's id from row corresponding to clicked Join   */
+                int row = e.RowIndex; // row's index
+                DataGridViewRow currentRow = events_dataGridView.Rows[e.RowIndex]; // obtain datagridRow to achieve cell's value
+                int eventID = (int)currentRow.Cells["Id"].Value; // obtain of id on desired row
 
-                JoinEventForm joinEventForm = new JoinEventForm();
-                //Events_dataGridView.Visible = false;
+                // Check if user is already registered on that event
+
+
+                JoinEventForm joinEventForm = new JoinEventForm(eventID);
+                
                 GeneralForm auxForm = new GeneralForm();
                 auxForm = GetGeneralForm();
 
