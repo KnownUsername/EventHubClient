@@ -41,6 +41,13 @@ namespace View
             Session.CurrentUser.Email = emailLog_textBox.Text.ToString();
             Session.CurrentUser.Password = passwordLog_textBox.Text.ToString();
 
+            // for test purposes
+            User testUser = new User();
+            testUser.Email = "emiliodojacintopinto@snv.com";
+            testUser.Password = "Pisgolho123";
+
+            Session.CurrentUser = testUser;
+
             // Send info to service
             bool responseStatus = Login(Session.CurrentUser);
 
@@ -61,6 +68,7 @@ namespace View
             Session.CurrentUser.Name = name_textBox.Text.ToString();
             Session.CurrentUser.Email = emailReg_textBox.Text.ToString();
             Session.CurrentUser.Password = passwordReg_textBox.Text.ToString();
+
 
             // Send info to service 
 

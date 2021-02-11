@@ -16,7 +16,7 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace Controller
 {
@@ -43,26 +43,28 @@ namespace Controller
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             // Convets object from JSON format
-            string jsonString = JsonSerializer.Serialize(user);
+            string jsonString = JsonConvert.SerializeObject(user);
             var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");   //Header
 
             // Wait result
             HttpResponseMessage response = client.PostAsync("login", stringContent).Result;  //Post
 
             string result = response.Content.ReadAsStringAsync().Result;
-            int tokenIndex = result.IndexOf("\"token\"");
-
-            string serializedUser = result.Substring(1,tokenIndex-2);
             
-            int serializedTokenLength = result.Length - tokenIndex;
-            string serializedToken = result.Substring(tokenIndex, serializedTokenLength-1);
+            /*      Deserialization of received "Session" - by parts      */
 
-            //Session.Token = JsonSerializer.Deserialize<string>(serializedToken);
-            Session.CurrentUser = JsonSerializer.Deserialize<User>(serializedUser);
+            // Obtaining of needed indexes of json string
+            int tokenIndex = result.IndexOf("\"token\""); // where starts token (since it's variable name)
+            int lastCharRemoveIndex = result.LastIndexOf("\""); // where ends token
 
-            //Session = JsonSerializer.Deserialize(Session); 
-            
-            //Session.Token = result.Substring(1, result.Length - 2);
+            // User part of Json
+            string serializedUser = result.Substring(15, tokenIndex - 16);
+
+            int serializedTokenLength = lastCharRemoveIndex - tokenIndex - 9; // Size of token (Difference between both indices - length of "token": )
+           
+            // Values assignment
+            Session.Token = result.Substring(tokenIndex+9, serializedTokenLength); // corresponding part of token
+            Session.CurrentUser = JsonConvert.DeserializeObject<User>(serializedUser); // deserialize of User
 
             // Check if it's returned 200
             if (response.IsSuccessStatusCode) return true;
@@ -78,14 +80,16 @@ namespace Controller
         public static bool Regist(User user)
         {
             HttpClient client = new HttpClient();
-            string newBaseUrl = "https://localhost:44318/api/users/";
-            client.BaseAddress = new Uri(newBaseUrl);
+
+            client.BaseAddress = new Uri(baseUrl);
 
             // Define result type:
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             // Convets object from JSON format
-            string jsonString = JsonSerializer.Serialize(user);
+            //string jsonString = JsonSerializer.Serialize(user);
+            string jsonString = JsonConvert.SerializeObject(user);
+
             var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");   //Header
 
             // Wait result
