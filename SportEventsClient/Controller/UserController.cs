@@ -49,6 +49,10 @@ namespace Controller
             // Wait result
             HttpResponseMessage response = client.PostAsync("login", stringContent).Result;  //Post
 
+            // Check if it's not returned 200
+            if (!response.IsSuccessStatusCode) return false;
+
+            
             string result = response.Content.ReadAsStringAsync().Result;
             
             /*      Deserialization of received "Session" - by parts      */
@@ -65,11 +69,8 @@ namespace Controller
             // Values assignment
             Session.Token = result.Substring(tokenIndex+9, serializedTokenLength); // corresponding part of token
             Session.CurrentUser = JsonConvert.DeserializeObject<User>(serializedUser); // deserialize of User
-
-            // Check if it's returned 200
-            if (response.IsSuccessStatusCode) return true;
-
-            return false;
+           
+            return true;
         }
 
         /// <summary>
@@ -87,7 +88,6 @@ namespace Controller
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             // Convets object from JSON format
-            //string jsonString = JsonSerializer.Serialize(user);
             string jsonString = JsonConvert.SerializeObject(user);
 
             var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");   //Header
@@ -95,10 +95,13 @@ namespace Controller
             // Wait result
             HttpResponseMessage response = client.PostAsync("registerUser", stringContent).Result;  //Post
 
-            string result = response.Content.ReadAsStringAsync().Result;
-
+            
             // Check if it's returned 200
-            if (response.IsSuccessStatusCode) return true;
+            if (response.IsSuccessStatusCode)
+            {
+                string result = response.Content.ReadAsStringAsync().Result; //  !!! maybe remove
+                return true;
+            }
 
             return false;
         }

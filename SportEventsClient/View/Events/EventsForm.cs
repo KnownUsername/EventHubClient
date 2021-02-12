@@ -152,21 +152,33 @@ namespace View
 
             events_dataGridView.DataSource = events; // Fill DataGrid with events
 
-            // Add button to join an event
+            //              Add columns
+            CreateDataGridColumn("Enter event", "Join"); // Button to join an event
+            CreateDataGridColumn("Maps", "🌍");
+            events_dataGridView.Columns["Maps"].DisplayIndex = events_dataGridView.Columns["Local"].DisplayIndex; // change maps' column to be near Local column
+        }
+
+        /// <summary>
+        /// Creates a button to a DataGridView
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="buttonText"></param>
+        /// <param name="columnName"></param>
+        private void CreateDataGridColumn(string columnName,string buttonText)
+        {
             DataGridViewButtonColumn joinEventButtonColumn = new DataGridViewButtonColumn();
-            joinEventButtonColumn.Name = "enter_event";
-            joinEventButtonColumn.Text = "Join";
+            joinEventButtonColumn.Name = columnName;
+            joinEventButtonColumn.Text = buttonText;
             joinEventButtonColumn.UseColumnTextForButtonValue = true; // so buttons' name shows
 
             events_dataGridView.RowHeadersVisible = false; // Remove of default blank column
 
-            if (events_dataGridView.Columns["enter_event"] == null) // Check if column already exists
+            if (events_dataGridView.Columns[columnName] == null) // Check if column already exists
             {
                 events_dataGridView.Columns.Insert(0, joinEventButtonColumn); // Introduction of join button to table
             }
 
         }
-
 
         /// <summary>
         /// Redirects user to JoinEvent window, if he clicks on "Join" button
@@ -176,7 +188,8 @@ namespace View
         private void Events_dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (e.ColumnIndex == events_dataGridView.Columns["enter_event"].Index) // Check if was clicked a button on table
+            // Check if was clicked "Enter event" button on table
+            if (e.ColumnIndex == events_dataGridView.Columns["Enter event"].Index) 
             {
                 /*      Getting event's id from row corresponding to clicked Join   */
                 int row = e.RowIndex; // row's index
@@ -193,7 +206,20 @@ namespace View
 
                 auxForm.ChangePanelView(joinEventForm); // switch to window to join an event 
                 Close(); // Close current form
+            }
 
+            // Check if was clicked Maps' button on table
+            if (e.ColumnIndex == events_dataGridView.Columns["Maps"].Index)
+            {
+                int row = e.RowIndex; // row's index
+                DataGridViewRow currentRow = events_dataGridView.Rows[e.RowIndex]; // obtain datagridRow to achieve cell's value
+                string eventLocal = currentRow.Cells["Local"].Value.ToString(); // obain local of event on button's row
+                string eventName = currentRow.Cells["Name"].Value.ToString(); // obtain name of event on button's row   
+              
+                GeneralForm auxForm = new GeneralForm();
+                auxForm = GetGeneralForm();
+
+                auxForm.ChangePanelView(new LocationForm(eventName,eventLocal)); // switch to window to join an event 
             }
         }
 

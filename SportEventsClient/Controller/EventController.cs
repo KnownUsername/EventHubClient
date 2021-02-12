@@ -13,12 +13,13 @@
 
 using Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-
+using System.Text.RegularExpressions;
 
 namespace Controller
 {
@@ -28,9 +29,9 @@ namespace Controller
     public static class EventController
     {
 
-        static string baseUrl = "https://localhost:44318/api/events/"; // base URL for Events'method
+        static string baseUrl = "https://eventhub2021.azurewebsites.net/api/events/"; // base URL for Events'method
 
-
+        #region SERVICE_REQUESTS
         /// <summary>
         /// GET -> list of events, based on eventType, using HttpClient
         /// </summary>
@@ -100,7 +101,7 @@ namespace Controller
 
 
         /// <summary>
-        /// Check if user is already registered in event, using it's email
+        /// GET -> Check if user is already registered in event, using it's email
         /// </summary>
         /// <param name="email"></param>
         /// <param name="eventId"></param>
@@ -112,5 +113,85 @@ namespace Controller
 
             return false;
         }
+
+
+        /// <summary>
+        /// GET -> Get latitude and longitude of a place
+        /// </summary>
+        /// <param name="local"></param>
+        /// <returns></returns>
+        public static Location GetCoordinates(string local)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+
+            // Define result type: JSON 
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            // Wait result
+            HttpResponseMessage response = client.GetAsync("getCoordinates/"+local).Result;
+
+            // Check if it's returned 200
+            if (response.IsSuccessStatusCode)
+            {
+                string result = response.Content.ReadAsStringAsync().Result;
+
+                string encodedResult = RemoveEncoding(result); // removes overserialize
+                string encodedResultFormatted = encodedResult.Substring(1, encodedResult.Length - 2); // takes out excessive characters
+
+                Location eventLocation = new Location();
+                eventLocation = GetCoordinatesFromJson(encodedResultFormatted); // take latitude and longitude from json
+               
+                return eventLocation;
+            }
+
+            return null;
+        }
+
+        #endregion
+
+        #region AUX_METHODS
+        /// <summary>
+        /// Removes json extra formatted
+        /// </summary>
+        /// <param name="encodedJson"></param>
+        /// <returns></returns>
+        private static string RemoveEncoding(string encodedJson)
+        {
+            var sb = new StringBuilder(encodedJson);
+            sb.Replace("\\", string.Empty);
+            sb.Replace("\"[", "[");
+            sb.Replace("]\"", "]");
+            return sb.ToString();
+        }
+
+
+        /// <summary>
+        /// Gets latitude and longitude from a json string
+        /// </summary>
+        /// <param name="jsonText"></param>
+        /// <returns></returns>
+        private static Location GetCoordinatesFromJson (string jsonText)
+        {
+            //      Regular Expressions for latitude and longitude
+            string latitudeRegularExpression = "\"lat\":(-*[0-9]+\\.[0-9]+)";
+            string longitudeRegularExpression = "\"lng\":(-*[0-9]+\\.[0-9]+)";
+
+            //      Match of regular expression on text
+            Match latitudeMatch = Regex.Match(jsonText, latitudeRegularExpression);
+            Match longitudeMatch = Regex.Match(jsonText, longitudeRegularExpression);
+
+            //      Check if there was matches
+            if (!latitudeMatch.Success | !longitudeMatch.Success) return null;
+
+            //      Store matched fields
+            Location givenLocation = new Location();
+            givenLocation.Latitude = latitudeMatch.Groups[1].Value;
+            givenLocation.Longitude = longitudeMatch.Groups[1].Value;
+
+            return givenLocation;
+        }
+
+        #endregion
     }
 }

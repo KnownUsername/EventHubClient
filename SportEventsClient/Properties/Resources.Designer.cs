@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SportEventsClient.Properties {
+namespace View.Properties {
     using System;
     
     
