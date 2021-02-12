@@ -35,6 +35,7 @@ namespace Controller
         /// <returns></returns>
         public static bool Login(User user)
         {
+            string otherBaseUrl = "https://localhost:44318/api/users/";
 
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUrl);
@@ -80,6 +81,8 @@ namespace Controller
         /// <returns></returns>
         public static bool Regist(User user)
         {
+            string otherBaseUrl = "https://localhost:44318/api/users/";
+
             HttpClient client = new HttpClient();
 
             client.BaseAddress = new Uri(baseUrl);
@@ -94,19 +97,11 @@ namespace Controller
 
             // Wait result
             HttpResponseMessage response = client.PostAsync("registerUser", stringContent).Result;  //Post
-
-            
+          
             // Check if it's returned 200
-            if (response.IsSuccessStatusCode)
-            {
-                string result = response.Content.ReadAsStringAsync().Result; //  !!! maybe remove
-                return true;
-            }
-
+            if (response.IsSuccessStatusCode) return true;
             return false;
         }
-
-
 
     }
 }

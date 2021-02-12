@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\EventController.cs" />
+    <Compile Include="Controller\SportController.cs" />
     <Compile Include="Controller\TeamController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="Model\Account.cs" />

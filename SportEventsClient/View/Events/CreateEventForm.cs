@@ -20,6 +20,7 @@ using System.Net;
 using System.Text;
 using System.Windows.Forms;
 using static Controller.EventController;
+using static Controller.SportController;
 
 namespace View
 {
@@ -90,6 +91,7 @@ namespace View
             createdEvent.Status = (EventStatus)eventStatus_Picker.SelectedIndex;
 
             bool responseStatus = CreateEvent(createdEvent); // request for service, to create event
+            
             // Check if request suceeded
             if (responseStatus) MessageBox.Show("Event created!");
             else MessageBox.Show("Fail on creating event! :(");
@@ -118,38 +120,7 @@ namespace View
         /// <returns></returns>
         void InitializeSports()
         {
-
-            #region URIConstruction
-            HttpWebRequest request;
-            StringBuilder uri;
-            string url = "https://localhost:44318/api/sports/GetSports"; // change link accordly
-
-            uri = new StringBuilder();
-            uri.Append(url);
-            #endregion
-
-            // RequestPreparation
-            request = WebRequest.Create(uri.ToString()) as HttpWebRequest;
-
-            #region RequestSend
-            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)     //via GET
-            {
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    string message = String.Format("GET falhou. Recebido HTTP {0}", response.StatusCode);
-                    throw new ApplicationException(message);
-                }
-
-
-                // Storage of requested Json
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                string content = reader.ReadToEnd();
-
-                // Deserialization of received Json
-                sports = JsonConvert.DeserializeObject<List<Sport>>(content);
-
-            }
-            #endregion
+            sports = GetSports(); // assign possible sports values to list os sports 
         }
 
         #endregion
