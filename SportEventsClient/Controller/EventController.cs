@@ -74,6 +74,7 @@ namespace Controller
         /// <returns></returns>
         public static bool CreateEvent(Event createdEvent)
         {
+            string oldUrl = "https://localhost:44318/api/events/";
 
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUrl);

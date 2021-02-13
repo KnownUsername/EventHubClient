@@ -28,6 +28,7 @@ namespace View
         public HomeForm()
         {
             InitializeComponent();
+
         }
 
 
@@ -40,13 +41,6 @@ namespace View
         {
             Session.CurrentUser.Email = emailLog_textBox.Text.ToString();
             Session.CurrentUser.Password = passwordLog_textBox.Text.ToString();
-
-            // for test purposes
-            User testUser = new User();
-            testUser.Email = "emiliodojacintopinto@snv.com";
-            testUser.Password = "Pisgolho123";
-
-            Session.CurrentUser = testUser;
 
             // Send info to service
             bool responseStatus = Login(Session.CurrentUser);

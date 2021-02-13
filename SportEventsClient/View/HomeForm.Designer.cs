@@ -88,6 +88,7 @@ namespace View
             this.passwordLog_textBox.Name = "passwordLog_textBox";
             this.passwordLog_textBox.Size = new System.Drawing.Size(177, 22);
             this.passwordLog_textBox.TabIndex = 5;
+            this.passwordLog_textBox.PasswordChar = '*';
             // 
             // password_label
             // 
@@ -105,6 +106,7 @@ namespace View
             this.passwordReg_textBox.Name = "passwordReg_textBox";
             this.passwordReg_textBox.Size = new System.Drawing.Size(177, 22);
             this.passwordReg_textBox.TabIndex = 9;
+            this.passwordReg_textBox.PasswordChar = '*';
             // 
             // passwordReg_label
             // 
